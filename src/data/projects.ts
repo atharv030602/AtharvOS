@@ -50,11 +50,182 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: "resumefit-ai",
+    name: "ResumeFit AI",
+    tagline: "An agentic AI system that scores how well a resume fits a job description",
+    status: "Completed",
+    featured: true,
+    year: "2026",
+    summaryLine:
+      "A Spring Boot + React app where a 4-agent chain (Extractor → JD Analyzer → Matcher → Advisor), powered by the Claude API, reads an uploaded resume PDF and a job description and produces a fit score with actionable feedback on a custom instrument-panel-themed gauge UI.",
+    tags: ["Spring Boot", "React.js", "Claude API", "Agentic AI", "PDFBox"],
+    links: {},
+    overview:
+      "ResumeFit AI analyzes how well a resume matches a specific job description and returns a fit score along with concrete, actionable feedback. The backend runs an agentic chain of four specialized agents built on the Claude API — an Extractor that pulls structured data out of an uploaded resume PDF (via Apache PDFBox), a JD Analyzer that breaks down the job description into requirements, a Matcher that compares the two, and an Advisor that turns the comparison into specific suggestions. The React frontend presents the result through a custom instrument-panel-themed fit gauge.",
+    whyBuilt:
+      "Built as the capstone project of a self-directed 7-day 'ignition plan' to move from core Java into Agentic AI — the goal was to go from zero agentic AI experience to a working, multi-agent, LLM-powered application, and to have a genuine AI project to show for the GenAI/Agentic AI job search rather than just tutorials completed.",
+    targetUsers:
+      "Job seekers who want to check and improve how well their resume matches a specific job description before applying.",
+    problemStatement:
+      "Generic resume advice doesn't account for a specific job description — candidates need a way to see exactly where their resume falls short against a given JD and what to fix.",
+    outcome:
+      "A working full-stack agentic AI application: a 4-agent Claude-powered pipeline on the backend, PDF resume ingestion via PDFBox, and a React frontend with a custom instrument-panel-themed fit gauge to visualize the score and feedback.",
+    techStack: {
+      languages: ["Java", "JavaScript"],
+      frameworks: ["Spring Boot", "React.js"],
+      database: [],
+      architecture: ["Agentic 4-agent pipeline (Extractor → JD Analyzer → Matcher → Advisor)", "REST API + React SPA"],
+      authentication: [],
+      deployment: [],
+      tools: ["Claude API", "Apache PDFBox", "Git", "GitHub"],
+    },
+    architecture: [
+      "Spring Boot backend orchestrates a 4-agent chain, each agent making a focused Claude API call: Extractor (resume → structured data), JD Analyzer (job description → requirements), Matcher (structured comparison), Advisor (actionable feedback).",
+      "PDF resumes are parsed server-side with Apache PDFBox before being handed to the Extractor agent.",
+      "React frontend consumes the REST layer and renders the result as a custom instrument-panel-themed fit gauge.",
+    ],
+    moduleDiagram: [
+      { label: "Extractor Agent", detail: "Parses resume PDF into structured data" },
+      { label: "JD Analyzer Agent", detail: "Breaks job description into requirements" },
+      { label: "Matcher Agent", detail: "Compares resume data against JD requirements" },
+      { label: "Advisor Agent", detail: "Generates actionable fit feedback" },
+    ],
+    databaseDesign: [],
+    folderStructure: `resumefit-ai/
+├── backend/
+│   ├── src/main/java/com/resumefitai/
+│   │   ├── controller/    # REST controllers
+│   │   ├── agent/         # Extractor / JDAnalyzer / Matcher / Advisor
+│   │   ├── service/       # PDFBox parsing, Claude API client
+│   │   └── ResumeFitAiApplication.java
+│   └── src/main/resources/
+│       └── application.properties
+└── frontend/
+    ├── src/
+    │   ├── components/    # Fit gauge, upload UI
+    │   ├── pages/
+    │   ├── services/      # API clients
+    │   └── App.jsx
+    └── package.json`,
+    screenshots: [],
+    features: [
+      "PDF resume upload and parsing via Apache PDFBox",
+      "4-agent Claude-powered pipeline: Extractor, JD Analyzer, Matcher, Advisor",
+      "Resume-to-job-description fit scoring",
+      "Actionable, specific feedback on where the resume falls short",
+      "Custom instrument-panel-themed fit gauge UI",
+    ],
+    challenges: [],
+    lessonsLearned: [],
+    whatIdImprove: [],
+    tradeoffs: [],
+    futureRoadmap: [],
+  },
+  {
+    slug: "sunny-game-cafe",
+    name: "Sunny Game Cafe",
+    tagline: "A full-stack booking & management platform for a game cafe — development completed, testing and deployment in progress",
+    status: "Building",
+    featured: false,
+    year: "2025 — Present",
+    summaryLine:
+      "A Spring Boot + React platform that lets customers book gaming stations and browse a game library — currently in development phase, not fully deployed, with testing and deployment in process.",
+    tags: ["Spring Boot", "React.js", "MySQL", "REST APIs", "Booking System"],
+    links: {},
+    overview:
+      "Sunny Game Cafe is a full-stack platform for a modern gaming cafe. It handles station and time-slot booking, a browsable game library, and an admin dashboard for staff to manage bookings, stations and reports. The project is currently in development phase — the core build is complete and end-to-end testing is in progress, while deployment is also being prepared.",
+    whyBuilt:
+      "Game cafes run on tight schedules: stations sit idle when booking is manual and customers have no easy way to reserve a slot or see what consoles are available. I wanted to build a focused production-style booking system that solves these core problems while practising a real Spring Boot + React stack with a relational database.",
+    targetUsers:
+      "Cafe customers who want to reserve gaming stations; cafe staff and admins who manage bookings, stations and reports.",
+    problemStatement:
+      "Manual booking leads to double-booked stations, walk-in queues and no reliable customer history — making it hard to run a game cafe smoothly.",
+    outcome:
+      "A working full-stack booking and management system. Development is completed; testing is in process to validate booking flows and admin workflows; deployment is in process and the app is not yet fully live.",
+    techStack: {
+      languages: ["Java", "JavaScript", "SQL"],
+      frameworks: ["Spring Boot", "React.js", "Spring Data JPA"],
+      database: ["MySQL"],
+      architecture: ["Layered backend (Controller / Service / Repository)", "REST API + React SPA"],
+      authentication: [],
+      deployment: ["In progress: cloud VPS / containerized deployment"],
+      tools: ["Git", "GitHub", "VS Code", "Postman"],
+    },
+    architecture: [
+      "Spring Boot backend exposes REST APIs for bookings, users, stations and admin reports.",
+      "React front end consumes the REST layer and keeps state in context hooks, with reusable booking and dashboard components.",
+      "MySQL database stores users, stations, time slots and bookings.",
+    ],
+    moduleDiagram: [
+      { label: "Station Booking", detail: "Time-slot reservation, availability checks" },
+      { label: "Game Library", detail: "Browse titles, consoles and availability" },
+      { label: "Admin Dashboard", detail: "Bookings, stations, reports" },
+    ],
+    databaseDesign: [
+      { table: "user", fields: ["id", "name", "email", "role", "created_at"] },
+      { table: "station", fields: ["id", "name", "console_type", "is_active"] },
+      { table: "time_slot", fields: ["id", "station_id (FK)", "slot_date", "start_time", "end_time", "is_booked"] },
+      { table: "booking", fields: ["id", "user_id (FK)", "slot_id (FK)", "status", "total_amount", "created_at"] },
+    ],
+    erDiagram:
+      "user 1—* booking; station 1—* time_slot 1—1 booking.",
+    folderStructure: `sunny-game-cafe/
+├── backend/
+│   ├── src/main/java/com/sunnygamecafe/
+│   │   ├── controller/    # REST controllers
+│   │   ├── service/       # Business logic
+│   │   ├── repository/    # Spring Data JPA
+│   │   ├── model/         # Entity classes
+│   │   └── SunnyGameCafeApplication.java
+│   └── src/main/resources/
+│       └── application.properties
+├── frontend/
+│   ├── src/
+│   │   ├── components/    # Reusable UI
+│   │   ├── pages/         # Booking, dashboard
+│   │   ├── services/      # API clients
+│   │   └── App.jsx
+│   └── package.json
+└── database/
+    └── schema.sql`,
+    screenshots: [],
+    features: [
+      "Real-time station availability and time-slot booking",
+      "Game library browser with console filters",
+      "Admin dashboard for bookings, stations and reports",
+      "Responsive design for desktop and mobile browsing",
+    ],
+    challenges: [
+      "Preventing double-booking of the same station and time slot under concurrent requests.",
+      "Designing a clean booking flow that keeps the station calendar accurate and easy to read.",
+      "Keeping the admin dashboard performant as bookings and station data grow.",
+    ],
+    lessonsLearned: [
+      "Database-level constraints plus optimistic locking are the safest way to protect limited inventory like time slots.",
+      "A clear REST contract between Spring Boot and React makes testing and future mobile apps easier.",
+      "Building the admin dashboard early forces the backend to expose the right aggregates from day one.",
+    ],
+    whatIdImprove: [
+      "Complete end-to-end testing and fix any edge cases before public deployment.",
+      "Add live deployment with CI/CD and production monitoring.",
+      "Introduce automated tests for booking flows.",
+    ],
+    tradeoffs: [
+      "Built a monolithic Spring Boot backend first to validate the complete booking domain before considering microservices.",
+      "Prioritized functional booking flows over polished public deployment until testing is finished.",
+    ],
+    futureRoadmap: [
+      "Finish testing and deploy to production",
+      "Introduce SMS/email booking reminders",
+      "Customer mobile app for on-the-go reservations",
+      "Docker-based deployment and monitoring",
+    ],
+  },
+  {
     slug: "garage-erp",
     name: "Garage ERP System",
     tagline: "A modular ERP platform for automobile service garages",
     status: "Building",
-    featured: true,
     year: "2024 — Present",
     summaryLine:
       "A React ERP that manages customers, vehicles, job cards, inventory, billing, insurance and service records — architected for a future Spring Boot backend.",
