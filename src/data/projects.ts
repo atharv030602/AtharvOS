@@ -52,74 +52,103 @@ export const projects: Project[] = [
   {
     slug: "resumefit-ai",
     name: "ResumeFit AI",
-    tagline: "An agentic AI system that scores how well a resume fits a job description",
+    tagline: "A resume-to-job-description fit analyzer with a fully local, zero-cost matching engine",
     status: "Completed",
     featured: true,
     year: "2026",
     summaryLine:
-      "A Spring Boot + React app where a 4-agent chain (Extractor → JD Analyzer → Matcher → Advisor), powered by the Claude API, reads an uploaded resume PDF and a job description and produces a fit score with actionable feedback on a custom instrument-panel-themed gauge UI.",
-    tags: ["Spring Boot", "React.js", "Claude API", "Agentic AI", "PDFBox"],
-    links: {},
+      "A FastAPI + Streamlit app that scores how well a resume matches a job description using a curated 170+ skill keyword-matching engine — no paid AI API, deployed free on Render and Streamlit Community Cloud.",
+    tags: ["FastAPI", "Streamlit", "Python", "Keyword Matching", "REST API"],
+    links: {
+      github: "https://github.com/atharv030602/Resume-Analyzer",
+      demo: "https://resume-analyzer-nk4wmappwmh2hdz3prkoh4d.streamlit.app/",
+    },
     overview:
-      "ResumeFit AI analyzes how well a resume matches a specific job description and returns a fit score along with concrete, actionable feedback. The backend runs an agentic chain of four specialized agents built on the Claude API — an Extractor that pulls structured data out of an uploaded resume PDF (via Apache PDFBox), a JD Analyzer that breaks down the job description into requirements, a Matcher that compares the two, and an Advisor that turns the comparison into specific suggestions. The React frontend presents the result through a custom instrument-panel-themed fit gauge.",
+      "ResumeFit AI analyzes how well a resume matches a specific job description and returns an instant fit score, matched/missing skills, targeted suggestions, and a downloadable optimized resume. It started as an agentic, Claude-API-powered pipeline, but after running into real-world constraints — a free-tier quota of zero, a billing wall, and a network that couldn't reach a third provider — I rebuilt the matching engine as a fully local, deterministic system: a curated dictionary of 170+ tech and soft skills matched via regex against both documents, with a fallback pass that catches tool/brand names the dictionary misses. Zero API cost, zero external dependency, instant results.",
     whyBuilt:
-      "Built as the capstone project of a self-directed 7-day 'ignition plan' to move from core Java into Agentic AI — the goal was to go from zero agentic AI experience to a working, multi-agent, LLM-powered application, and to have a genuine AI project to show for the GenAI/Agentic AI job search rather than just tutorials completed.",
+      "Originally built as the capstone of a self-directed 'ignition plan' into agentic AI. After trying to keep it running on a student budget, I hit the practical reality of AI-API-backed side projects: one provider's free tier had zero quota, another needed prepaid billing, and a third was unreachable from my network. Rather than gate a portfolio project behind someone else's billing dashboard or uptime, I rebuilt the core matching logic to be fully self-contained.",
     targetUsers:
       "Job seekers who want to check and improve how well their resume matches a specific job description before applying.",
     problemStatement:
-      "Generic resume advice doesn't account for a specific job description — candidates need a way to see exactly where their resume falls short against a given JD and what to fix.",
+      "Generic resume advice doesn't account for a specific job description — candidates need a way to see exactly where their resume falls short against a given JD and what to fix, without depending on a paid AI service that could run out of quota or go down.",
     outcome:
-      "A working full-stack agentic AI application: a 4-agent Claude-powered pipeline on the backend, PDF resume ingestion via PDFBox, and a React frontend with a custom instrument-panel-themed fit gauge to visualize the score and feedback.",
+      "A live, fully working full-stack app: a FastAPI backend running a local keyword-matching engine, a Streamlit frontend with an instrument-panel-themed fit gauge, deployed free on Render and Streamlit Community Cloud — no AI API key required to run or deploy it.",
     techStack: {
-      languages: ["Java", "JavaScript"],
-      frameworks: ["Spring Boot", "React.js"],
-      database: [],
-      architecture: ["Agentic 4-agent pipeline (Extractor → JD Analyzer → Matcher → Advisor)", "REST API + React SPA"],
+      languages: ["Python"],
+      frameworks: ["FastAPI", "Streamlit"],
+      database: ["MySQL (optional, for result persistence)"],
+      architecture: ["Local keyword-matching engine (regex-based)", "REST API + Streamlit UI"],
       authentication: [],
-      deployment: [],
-      tools: ["Claude API", "Apache PDFBox", "Git", "GitHub"],
+      deployment: ["Render (backend)", "Streamlit Community Cloud (frontend)"],
+      tools: ["Git", "GitHub", "pypdf"],
     },
     architecture: [
-      "Spring Boot backend orchestrates a 4-agent chain, each agent making a focused Claude API call: Extractor (resume → structured data), JD Analyzer (job description → requirements), Matcher (structured comparison), Advisor (actionable feedback).",
-      "PDF resumes are parsed server-side with Apache PDFBox before being handed to the Extractor agent.",
-      "React frontend consumes the REST layer and renders the result as a custom instrument-panel-themed fit gauge.",
+      "FastAPI backend exposes /api/analyze/agentic and /api/analyze/upload, both routed through a local matching engine — no external API calls.",
+      "A curated dictionary of 170+ tech and soft skills is scanned against both resume and job description via word-boundary regex, with multi-word terms (e.g. 'Spring Boot') handled via flexible whitespace matching.",
+      "A fallback pass extracts capitalized/acronym tokens from the JD that aren't in the dictionary, to catch tools and brands the curated list misses.",
+      "Fit score = matched keywords ÷ total JD keywords; missing skills drive specific, per-skill suggestions and a downloadable 'optimized resume' with a keyword alignment summary.",
+      "Streamlit frontend renders the score as an instrument-panel-themed gauge with matched/missing skill chips.",
     ],
     moduleDiagram: [
-      { label: "Extractor Agent", detail: "Parses resume PDF into structured data" },
-      { label: "JD Analyzer Agent", detail: "Breaks job description into requirements" },
-      { label: "Matcher Agent", detail: "Compares resume data against JD requirements" },
-      { label: "Advisor Agent", detail: "Generates actionable fit feedback" },
+      { label: "Skill Dictionary", detail: "170+ curated tech/soft skills with alias matching" },
+      { label: "Local Matcher", detail: "Regex-based scan of resume + JD, fallback keyword extraction" },
+      { label: "Scoring Engine", detail: "Matched/missing skills, fit score, suggestions" },
+      { label: "Resume Optimizer", detail: "Generates a downloadable keyword-aligned resume" },
     ],
-    databaseDesign: [],
+    databaseDesign: [
+      {
+        table: "analysis",
+        fields: ["id", "resume_text", "job_description", "fit_score", "matched_skills", "missing_skills", "suggestions", "created_at"],
+      },
+    ],
     folderStructure: `resumefit-ai/
 ├── backend/
-│   ├── src/main/java/com/resumefitai/
-│   │   ├── controller/    # REST controllers
-│   │   ├── agent/         # Extractor / JDAnalyzer / Matcher / Advisor
-│   │   ├── service/       # PDFBox parsing, Claude API client
-│   │   └── ResumeFitAiApplication.java
-│   └── src/main/resources/
-│       └── application.properties
+│   ├── app/
+│   │   ├── routers/analysis.py     # /api/analyze, /api/analyze/agentic, /api/analyze/upload
+│   │   ├── services/
+│   │   │   ├── local_matcher.py    # Matching engine — score, suggestions, optimized resume
+│   │   │   ├── skills_data.py      # Curated skill dictionary
+│   │   │   └── pdf_service.py      # PDF text extraction
+│   │   ├── models.py / schemas.py
+│   │   └── main.py
+│   └── requirements.txt
 └── frontend/
-    ├── src/
-    │   ├── components/    # Fit gauge, upload UI
-    │   ├── pages/
-    │   ├── services/      # API clients
-    │   └── App.jsx
-    └── package.json`,
+    ├── app.py                      # Streamlit UI
+    └── requirements.txt`,
     screenshots: [],
     features: [
-      "PDF resume upload and parsing via Apache PDFBox",
-      "4-agent Claude-powered pipeline: Extractor, JD Analyzer, Matcher, Advisor",
-      "Resume-to-job-description fit scoring",
-      "Actionable, specific feedback on where the resume falls short",
-      "Custom instrument-panel-themed fit gauge UI",
+      "Instant resume-to-JD fit scoring — no AI API, no waiting, no cost",
+      "170+ skill keyword dictionary with alias/multi-word matching (e.g. 'Spring Boot', 'REST API')",
+      "Fallback extraction for tools/brands outside the curated dictionary",
+      "Matched/missing skill breakdown with targeted, per-skill suggestions",
+      "Downloadable 'optimized resume' with a keyword alignment summary",
+      "PDF resume upload support",
+      "Deployed free on Render + Streamlit Community Cloud",
     ],
-    challenges: [],
-    lessonsLearned: [],
-    whatIdImprove: [],
-    tradeoffs: [],
-    futureRoadmap: [],
+    challenges: [
+      "Chased three different AI providers before hitting quota, billing, and network walls on each — decided to cut the dependency entirely rather than keep debugging third-party infrastructure.",
+      "A subtle regex bug (re.escape() also escapes spaces) silently broke every multi-word skill match ('Spring Boot', 'REST API') — caught it by testing a known-overlapping resume/JD pair and seeing an impossible 0% score.",
+      "Balancing a curated skill dictionary against a fallback heuristic so the tool stays useful for job descriptions outside pure tech roles.",
+    ],
+    lessonsLearned: [
+      "A deterministic, rule-based system can be a genuinely better engineering choice than an LLM call — faster, free, and doesn't depend on someone else's uptime or billing.",
+      "Always test regex-based matching against a case where you already know the expected answer — silent failures (0 matches when there should be several) are easy to miss otherwise.",
+      "Deployment-time environment differences (Streamlit Cloud's secrets vs a local .env) are worth designing for from the start.",
+    ],
+    whatIdImprove: [
+      "Expand the skill dictionary and fallback heuristics to cover non-tech roles better.",
+      "Add lightweight semantic matching (e.g. synonym expansion) without reintroducing an API dependency.",
+      "Add MySQL-backed history so users can revisit past analyses.",
+    ],
+    tradeoffs: [
+      "Chose deterministic keyword matching over LLM-based semantic analysis — less nuanced, but free, instant, and has no external dependency or failure mode.",
+      "Skipped database persistence in the deployed version to keep hosting free and setup trivial.",
+    ],
+    futureRoadmap: [
+      "Optional LLM-powered mode as an opt-in upgrade path",
+      "Resume history and comparison across multiple JDs",
+      "Browser extension for one-click JD scraping",
+    ],
   },
   {
     slug: "sunny-game-cafe",

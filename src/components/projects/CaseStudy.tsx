@@ -126,7 +126,9 @@ export function CaseStudy({ project: p }: { project: Project }) {
         <Reveal as="section" className="rounded-2xl border border-border bg-surface/50 p-6 sm:p-8">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand">Tech Stack</p>
           <dl className="mt-5 divide-y divide-border">
-            {stackRows.map((row) => (
+            {stackRows
+              .filter((row) => p.techStack[row.key].length > 0)
+              .map((row) => (
               <div key={row.key} className="grid gap-2 py-3 sm:grid-cols-[160px_1fr] sm:gap-4">
                 <dt className="text-sm font-medium text-foreground">{row.label}</dt>
                 <dd className="flex flex-wrap gap-1.5">
