@@ -24,14 +24,6 @@ export const timeline: TimelineEntry[] = [
     kind: "education",
   },
   {
-    period: "2023",
-    title: "Web Development Intern",
-    org: "Solnet.co.in",
-    description:
-      "Maintained and updated live client websites — UI enhancements, content updates and bug fixes — and helped with testing and deployment.",
-    kind: "experience",
-  },
-  {
     period: "May 2024",
     title: "Cybersecurity Analyst Virtual Experience",
     org: "Tata (Forage)",
@@ -54,6 +46,14 @@ export const timeline: TimelineEntry[] = [
     description:
       "Deepening backend engineering, DSA and software design while shipping projects (CGPA 7.33).",
     kind: "education",
+  },
+  {
+    period: "Dec 2025 — Jun 2026",
+    title: "Web Development Intern",
+    org: "Solnet.co.in",
+    description:
+      "Maintained and updated live client websites — UI enhancements, content updates and bug fixes — and helped with testing and deployment.",
+    kind: "experience",
   },
   {
     period: "2026",
