@@ -44,7 +44,7 @@ export const timeline: TimelineEntry[] = [
     title: "Garage ERP System",
     org: "Personal Project",
     description:
-      "Building a modular React ERP for automobile garages — my flagship engineering project, architected for a Spring Boot backend.",
+      "Building a modular React ERP for automobile garages, architected for a Spring Boot backend.",
     kind: "milestone",
   },
   {
@@ -54,6 +54,14 @@ export const timeline: TimelineEntry[] = [
     description:
       "Deepening backend engineering, DSA and software design while shipping projects (CGPA 7.33).",
     kind: "education",
+  },
+  {
+    period: "2026",
+    title: "ResumeFit AI — shipped and deployed",
+    org: "Personal Project",
+    description:
+      "Built a resume-to-job-description fit analyzer; after three AI providers hit quota, billing and network walls in a row, rebuilt the matching engine as a free, local, deterministic system and shipped it live on Render + Streamlit Community Cloud.",
+    kind: "milestone",
   },
   {
     period: "Now",

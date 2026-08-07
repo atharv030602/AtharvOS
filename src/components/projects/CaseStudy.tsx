@@ -142,21 +142,25 @@ export function CaseStudy({ project: p }: { project: Project }) {
         </Reveal>
 
         {/* Architecture */}
-        <DocSection title="Architecture" eyebrow="Design">
-          <BulletList items={p.architecture} />
-        </DocSection>
+        {p.architecture.length > 0 && (
+          <DocSection title="Architecture" eyebrow="Design">
+            <BulletList items={p.architecture} />
+          </DocSection>
+        )}
 
         {/* Module Diagram */}
-        <DocSection title="Module Diagram">
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {p.moduleDiagram.map((m) => (
-              <div key={m.label} className="rounded-xl border border-border bg-surface/40 p-4">
-                <p className="font-mono text-sm font-medium text-foreground">{m.label}</p>
-                {m.detail && <p className="mt-1 text-xs text-muted-foreground">{m.detail}</p>}
-              </div>
-            ))}
-          </div>
-        </DocSection>
+        {p.moduleDiagram.length > 0 && (
+          <DocSection title="Module Diagram">
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {p.moduleDiagram.map((m) => (
+                <div key={m.label} className="rounded-xl border border-border bg-surface/40 p-4">
+                  <p className="font-mono text-sm font-medium text-foreground">{m.label}</p>
+                  {m.detail && <p className="mt-1 text-xs text-muted-foreground">{m.detail}</p>}
+                </div>
+              ))}
+            </div>
+          </DocSection>
+        )}
 
         {/* Database Design */}
         {p.databaseDesign.length > 0 && (
@@ -190,11 +194,13 @@ export function CaseStudy({ project: p }: { project: Project }) {
         )}
 
         {/* Folder Structure */}
-        <DocSection title="Folder Structure">
-          <pre className="overflow-x-auto rounded-xl border border-border bg-surface/60 p-5 font-mono text-xs leading-relaxed text-muted-foreground">
-            {p.folderStructure}
-          </pre>
-        </DocSection>
+        {p.folderStructure && (
+          <DocSection title="Folder Structure">
+            <pre className="overflow-x-auto rounded-xl border border-border bg-surface/60 p-5 font-mono text-xs leading-relaxed text-muted-foreground">
+              {p.folderStructure}
+            </pre>
+          </DocSection>
+        )}
 
         {/* Screenshots */}
         {p.screenshots.length > 0 && (
@@ -218,47 +224,59 @@ export function CaseStudy({ project: p }: { project: Project }) {
         )}
 
         {/* Features */}
-        <DocSection title="Features">
-          <BulletList items={p.features} />
-        </DocSection>
+        {p.features.length > 0 && (
+          <DocSection title="Features">
+            <BulletList items={p.features} />
+          </DocSection>
+        )}
 
         {/* Mandatory reflection section */}
         <Reveal as="section" className="rounded-2xl border border-brand/25 bg-brand/5 p-6 sm:p-8">
           <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand">Reflection</p>
           <h2 className="mt-2 text-2xl font-semibold text-foreground">Lessons Learned</h2>
           <div className="mt-6 grid gap-8 md:grid-cols-2">
-            <div>
-              <h3 className="mb-3 text-sm font-medium text-foreground">Lessons Learned</h3>
-              <BulletList items={p.lessonsLearned} />
-            </div>
-            <div>
-              <h3 className="mb-3 text-sm font-medium text-foreground">What I Would Improve</h3>
-              <BulletList items={p.whatIdImprove} />
-            </div>
-            <div>
-              <h3 className="mb-3 text-sm font-medium text-foreground">Technical Challenges</h3>
-              <BulletList items={p.challenges} />
-            </div>
-            <div>
-              <h3 className="mb-3 text-sm font-medium text-foreground">Trade-offs</h3>
-              <BulletList items={p.tradeoffs} />
-            </div>
+            {p.lessonsLearned.length > 0 && (
+              <div>
+                <h3 className="mb-3 text-sm font-medium text-foreground">Lessons Learned</h3>
+                <BulletList items={p.lessonsLearned} />
+              </div>
+            )}
+            {p.whatIdImprove.length > 0 && (
+              <div>
+                <h3 className="mb-3 text-sm font-medium text-foreground">What I Would Improve</h3>
+                <BulletList items={p.whatIdImprove} />
+              </div>
+            )}
+            {p.challenges.length > 0 && (
+              <div>
+                <h3 className="mb-3 text-sm font-medium text-foreground">Technical Challenges</h3>
+                <BulletList items={p.challenges} />
+              </div>
+            )}
+            {p.tradeoffs.length > 0 && (
+              <div>
+                <h3 className="mb-3 text-sm font-medium text-foreground">Trade-offs</h3>
+                <BulletList items={p.tradeoffs} />
+              </div>
+            )}
           </div>
         </Reveal>
 
         {/* Future Roadmap */}
-        <DocSection title="Future Roadmap">
-          <div className="flex flex-wrap gap-2">
-            {p.futureRoadmap.map((f) => (
-              <span
-                key={f}
-                className="rounded-full border border-border bg-surface-elevated/60 px-3 py-1.5 text-sm text-muted-foreground"
-              >
-                {f}
-              </span>
-            ))}
-          </div>
-        </DocSection>
+        {p.futureRoadmap.length > 0 && (
+          <DocSection title="Future Roadmap">
+            <div className="flex flex-wrap gap-2">
+              {p.futureRoadmap.map((f) => (
+                <span
+                  key={f}
+                  className="rounded-full border border-border bg-surface-elevated/60 px-3 py-1.5 text-sm text-muted-foreground"
+                >
+                  {f}
+                </span>
+              ))}
+            </div>
+          </DocSection>
+        )}
 
         {/* Links */}
         <div className="flex flex-wrap gap-3 border-t border-border pt-10">

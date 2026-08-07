@@ -13,9 +13,9 @@ export const skillGroups: SkillGroup[] = [
     title: "Core Technologies",
     description: "Tools I use to build real projects today.",
     categories: [
-      { label: "Languages", items: ["Java", "SQL", "JavaScript", "HTML", "CSS"] },
-      { label: "Backend", items: ["Spring Boot", "Hibernate", "JDBC", "JSP", "Servlets", "REST APIs"] },
-      { label: "Frontend", items: ["React.js"] },
+      { label: "Languages", items: ["Java", "Python", "SQL", "JavaScript", "HTML", "CSS"] },
+      { label: "Backend", items: ["Spring Boot", "FastAPI", "Hibernate", "JDBC", "JSP", "Servlets", "REST APIs"] },
+      { label: "Frontend", items: ["React.js", "Streamlit"] },
       { label: "Database", items: ["MySQL"] },
       { label: "Tools", items: ["Git", "GitHub", "Maven", "VS Code"] },
       { label: "Concepts", items: ["OOP", "Collections Framework", "Exception Handling", "MVC Architecture", "REST APIs", "DSA"] },
@@ -25,7 +25,6 @@ export const skillGroups: SkillGroup[] = [
     title: "Currently Learning",
     description: "Actively studying and practicing.",
     categories: [
-      { label: "Language", items: ["Python"] },
       { label: "Certification", items: ["Oracle Java"] },
       { label: "AI", items: ["Google ADK", "LangChain", "Prompt Engineering"] },
     ],

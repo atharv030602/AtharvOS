@@ -20,4 +20,5 @@ export const mission: MissionItem[] = [
   { title: "Oracle Cloud", status: "Exploring", note: "Deployment target" },
   { title: "Java Foundations", status: "Completed", note: "OOP, core APIs, JDBC" },
   { title: "SQL & MySQL", status: "Completed", note: "Schema design, joins, transactions" },
+  { title: "ResumeFit AI", status: "Completed", note: "FastAPI + Streamlit, deployed live" },
 ];
