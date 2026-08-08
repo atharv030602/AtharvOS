@@ -54,14 +54,14 @@ export interface Certification {
 export const certifications: Certification[] = [
   {
     id: "gfg-ai-tools",
-    title: "AI Tools Certification",
+    title: "AI Tools Skill Up",
     issuer: "GeeksforGeeks",
     issueDate: "2024",
     category: "AI",
     level: "Beginner",
     skills: ["AI Tools", "Prompt Engineering", "Productivity"],
     logo: "",
-    // certificatePdf: "/certificates/gfg-ai-tools.pdf", // ← uncomment once the PDF is added
+    certificatePdf: "/certificates/gfg-ai-tools.pdf",
     featured: true,
     verified: true,
   },
