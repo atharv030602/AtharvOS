@@ -160,7 +160,9 @@ export const projects: Project[] = [
     summaryLine:
       "A Spring Boot + React platform that lets customers book gaming stations and browse a game library — currently in development phase, not fully deployed, with testing and deployment in process.",
     tags: ["Spring Boot", "React.js", "MySQL", "REST APIs", "Booking System"],
-    links: {},
+    links: {
+      github: "https://github.com/atharv030602/sunny-game-hub",
+    },
     overview:
       "Sunny Game Cafe is a full-stack platform for a modern gaming cafe. It handles station and time-slot booking, a browsable game library, and an admin dashboard for staff to manage bookings, stations and reports. The project is currently in development phase — the core build is complete and end-to-end testing is in progress, while deployment is also being prepared.",
     whyBuilt:
@@ -259,7 +261,9 @@ export const projects: Project[] = [
     summaryLine:
       "A React ERP that manages customers, vehicles, job cards, inventory, billing, insurance and service records — architected for a future Spring Boot backend.",
     tags: ["React.js", "JavaScript", "CSS", "ERP", "Dashboards"],
-    links: {},
+    links: {
+      github: "https://github.com/atharv030602/garage-erp",
+    },
     overview:
       "Garage ERP is a management platform for automobile service garages. It brings customers, vehicles, job cards, inventory, billing, insurance, licenses and service records into one system, replacing the scattered notebooks and spreadsheets most small garages rely on. The application is built as a modular React front end with a deliberately clean architecture so a Spring Boot + MySQL backend can be integrated without reworking the UI.",
     whyBuilt:
