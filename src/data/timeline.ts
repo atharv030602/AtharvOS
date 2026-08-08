@@ -16,6 +16,13 @@ export const timeline: TimelineEntry[] = [
     kind: "education",
   },
   {
+    period: "2019 — 2020",
+    title: "HSC — Higher Secondary Certificate",
+    org: "Kids Mentor Global",
+    description: "Scored 60.15%.",
+    kind: "education",
+  },
+  {
     period: "2020 — 2023",
     title: "BCA — Bachelor of Computer Applications",
     org: "City Premier College, Nagpur",
