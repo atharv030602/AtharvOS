@@ -47,8 +47,8 @@ export interface ResumeMetadata {
 }
 
 export const resumeMeta: ResumeMetadata = {
-  version: "v1.0",
-  lastUpdated: "July 2026",
+  version: "v1.1",
+  lastUpdated: "August 2026",
   file: "/resume.pdf",
 };
 
