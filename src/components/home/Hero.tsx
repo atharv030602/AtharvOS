@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, ChevronDown, Download } from "lucide-react";
 import { siteConfig, heroRoles } from "@/config/site";
 import { useRotatingText } from "@/hooks/use-rotating-text";
 import { rotateText, fadeUp, staggerContainer } from "@/lib/motion";
@@ -64,6 +64,7 @@ export function Hero() {
             <ButtonAnchor
               href={siteConfig.social.github}
               variant="ghost"
+              className="rounded-full border border-border bg-surface-elevated/60 p-2.5 text-foreground hover:border-brand/50 hover:bg-surface-elevated hover:text-brand"
               aria-label="GitHub profile"
             >
               <GithubIcon className="size-5" />
@@ -71,6 +72,7 @@ export function Hero() {
             <ButtonAnchor
               href={siteConfig.social.linkedin}
               variant="ghost"
+              className="rounded-full border border-border bg-surface-elevated/60 p-2.5 text-foreground hover:border-brand/50 hover:bg-surface-elevated hover:text-brand"
               aria-label="LinkedIn profile"
             >
               <LinkedinIcon className="size-5" />
@@ -105,6 +107,22 @@ export function Hero() {
           </div>
         </motion.div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6, delay: 0.8 }}
+        className="mt-10 flex justify-center sm:mt-14"
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          className="text-muted-foreground"
+          aria-hidden="true"
+        >
+          <ChevronDown className="size-5" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
