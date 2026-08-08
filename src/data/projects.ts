@@ -162,6 +162,7 @@ export const projects: Project[] = [
     tags: ["Spring Boot", "React.js", "MySQL", "REST APIs", "Booking System"],
     links: {
       github: "https://github.com/atharv030602/sunny-game-hub",
+      demo: "https://sunny-game-hub.vercel.app/",
     },
     overview:
       "Sunny Game Cafe is a full-stack platform for a modern gaming cafe. It handles station and time-slot booking, a browsable game library, and an admin dashboard for staff to manage bookings, stations and reports. The project is currently in development phase — the core build is complete and end-to-end testing is in progress, while deployment is also being prepared.",
@@ -263,6 +264,7 @@ export const projects: Project[] = [
     tags: ["React.js", "JavaScript", "CSS", "ERP", "Dashboards"],
     links: {
       github: "https://github.com/atharv030602/garage-erp",
+      demo: "https://garage-erp-topaz.vercel.app/",
     },
     overview:
       "Garage ERP is a management platform for automobile service garages. It brings customers, vehicles, job cards, inventory, billing, insurance, licenses and service records into one system, replacing the scattered notebooks and spreadsheets most small garages rely on. The application is built as a modular React front end with a deliberately clean architecture so a Spring Boot + MySQL backend can be integrated without reworking the UI.",
