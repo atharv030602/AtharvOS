@@ -23,7 +23,7 @@ export function Hero() {
 
           <motion.h1
             variants={fadeUp}
-            className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-6xl"
+            className="text-gradient mt-6 text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl"
           >
             {siteConfig.owner}
           </motion.h1>
@@ -82,29 +82,27 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto flex w-full max-w-xs items-end justify-center lg:max-w-sm"
+          className="animate-float relative mx-auto flex w-full max-w-xs items-center justify-center lg:max-w-sm"
         >
-          {/* Subtle blue glow behind the subject */}
+          {/* Glow ring behind the portrait */}
           <div
             aria-hidden="true"
-            className="absolute bottom-8 left-1/2 -z-10 h-4/5 w-4/5 -translate-x-1/2 rounded-full bg-brand/25 blur-[80px]"
+            className="absolute -z-10 size-64 rounded-full bg-[radial-gradient(circle,var(--brand)_0%,var(--brand-secondary)_55%,transparent_75%)] opacity-40 blur-[60px] sm:size-72"
           />
-          <div
-            aria-hidden="true"
-            className="absolute bottom-0 left-1/2 -z-10 h-3/5 w-3/5 -translate-x-1/2 rounded-full bg-brand-secondary/15 blur-[90px]"
-          />
-          <img
-            src={siteConfig.portraitUrl}
-            alt={`Portrait of ${siteConfig.owner}`}
-            width={516}
-            height={1042}
-            loading="eager"
-            fetchPriority="high"
-            className="animate-float relative w-full max-w-[22rem] object-contain drop-shadow-[0_25px_45px_rgba(0,0,0,0.55)]"
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).style.visibility = "hidden";
-            }}
-          />
+          <div className="relative size-64 overflow-hidden rounded-full ring-4 ring-brand/50 shadow-[0_0_70px_-10px_var(--brand)] sm:size-72">
+            <img
+              src={siteConfig.portraitUrl}
+              alt={`Portrait of ${siteConfig.owner}`}
+              width={516}
+              height={1042}
+              loading="eager"
+              fetchPriority="high"
+              className="size-full object-cover object-top"
+              onError={(e) => {
+                (e.currentTarget as HTMLImageElement).style.visibility = "hidden";
+              }}
+            />
+          </div>
         </motion.div>
       </div>
     </section>
