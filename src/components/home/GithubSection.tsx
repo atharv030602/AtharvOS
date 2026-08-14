@@ -38,12 +38,12 @@ export function GithubSection() {
       <div className="mt-10 grid gap-6 lg:grid-cols-[1.5fr_1fr]">
         <div className="grid gap-4 sm:grid-cols-2">
           {pinnedRepos.map((repo, i) => (
-            <Reveal key={repo.name} delay={(i % 2) * 0.05}>
+            <Reveal key={repo.name} delay={(i % 2) * 0.06}>
               <a
                 href={repo.url}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="group flex h-full flex-col rounded-2xl border border-border bg-surface/50 p-5 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-brand/40"
+                className="group flex h-full flex-col border border-border bg-surface/50 p-5 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:border-line-bright"
               >
                 <div className="flex items-center justify-between">
                   <span className="flex items-center gap-2 font-mono text-sm font-medium text-foreground">
@@ -57,7 +57,7 @@ export function GithubSection() {
                 </p>
                 <div className="mt-4 flex flex-wrap items-center gap-2">
                   <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                    <span className="size-2 rounded-full bg-brand" />
+                    <span className="size-2 bg-accent" />
                     {repo.language}
                   </span>
                   {repo.tags.map((t) => (
@@ -70,31 +70,28 @@ export function GithubSection() {
         </div>
 
         <div className="flex flex-col gap-6">
-          <Reveal className="rounded-2xl border border-border bg-surface/50 p-5 backdrop-blur-sm">
+          <Reveal className="border border-border bg-surface/50 p-5 backdrop-blur-sm">
             <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
               Contribution activity
             </p>
             <div className="mt-4 flex flex-wrap gap-1" aria-hidden="true">
               {contributionGrid.flatMap((row, r) =>
                 row.map((level, c) => (
-                  <span
-                    key={`${r}-${c}`}
-                    className={`size-2.5 rounded-[3px] ${cellShades[level]}`}
-                  />
+                  <span key={`${r}-${c}`} className={`size-2.5 ${cellShades[level]}`} />
                 )),
               )}
             </div>
             <p className="mt-3 text-xs text-muted-foreground">A snapshot of recent commit rhythm.</p>
           </Reveal>
 
-          <Reveal className="rounded-2xl border border-border bg-surface/50 p-5 backdrop-blur-sm">
+          <Reveal className="border border-border bg-surface/50 p-5 backdrop-blur-sm">
             <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
               Recent activity
             </p>
             <ul className="mt-4 space-y-3">
               {recentActivity.map((a, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" />
+                  <span className="mt-1.5 size-1.5 shrink-0 bg-accent" />
                   <span>
                     {a.action} <span className="font-mono text-foreground">{a.repo}</span>{" "}
                     <span className="text-xs">· {a.when}</span>

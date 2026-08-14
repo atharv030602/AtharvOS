@@ -25,7 +25,7 @@ export function Navbar() {
         )}
       >
         <Link to="/" className="group flex items-center gap-2" aria-label={`${siteConfig.name} home`}>
-          <span className="flex size-8 items-center justify-center rounded-lg bg-brand/15 font-mono text-sm font-bold text-brand">
+          <span className="flex size-8 items-center justify-center border border-accent/40 bg-accent/10 font-mono text-sm font-bold text-accent">
             A
           </span>
           <span className="font-display text-sm font-semibold tracking-tight text-foreground">

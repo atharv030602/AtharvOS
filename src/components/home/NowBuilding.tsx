@@ -16,10 +16,10 @@ export function NowBuilding() {
             {nowBuilding.map((item) => (
               <li
                 key={item.title}
-                className="group flex items-center gap-2 rounded-full border border-border bg-surface-elevated/60 px-3 py-1.5 text-sm text-foreground"
+                className="group flex items-center gap-2 border border-border bg-surface-elevated/60 px-3 py-1.5 text-sm text-foreground"
                 title={item.detail}
               >
-                <span className="size-1.5 animate-pulse rounded-full bg-brand" />
+                <span className="size-1.5 animate-pulse bg-accent" />
                 {item.title}
               </li>
             ))}

@@ -33,8 +33,8 @@ export function FeaturedTech() {
         {featuredTech.map((tech, i) => {
           const Icon = iconMap[tech.name];
           return (
-            <Reveal key={tech.name} delay={i * 0.05}>
-              <div className="flex flex-col items-center gap-3 rounded-2xl border border-border bg-surface/50 p-5 text-center backdrop-blur-sm transition-colors hover:border-brand/40">
+            <Reveal key={tech.name} delay={i * 0.06}>
+              <div className="flex flex-col items-center gap-3 border border-border bg-surface/50 p-5 text-center backdrop-blur-sm transition-colors hover:border-line-bright">
                 {Icon && <Icon className="size-8 text-foreground" />}
                 <div>
                   <p className="text-sm font-medium text-foreground">{tech.name}</p>

@@ -30,8 +30,8 @@ export function MissionDashboard() {
       </div>
       <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {sorted.map((m, i) => (
-          <Reveal key={m.title} delay={(i % 3) * 0.05}>
-            <div className="flex h-full flex-col justify-between rounded-2xl border border-border bg-surface/50 p-5 backdrop-blur-sm transition-colors hover:border-brand/40">
+          <Reveal key={m.title} delay={(i % 3) * 0.06}>
+            <div className="flex h-full flex-col justify-between border border-border bg-surface/50 p-5 backdrop-blur-sm transition-colors hover:border-line-bright">
               <div className="flex items-start justify-between gap-3">
                 <p className="font-medium text-foreground">{m.title}</p>
                 <StatusBadge status={m.status} />

@@ -44,7 +44,7 @@ export function FeaturedCertifications({
       </div>
       <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {featured.map((cert, i) => (
-          <Reveal key={cert.id} delay={(i % 3) * 0.05} className="h-full">
+          <Reveal key={cert.id} delay={(i % 3) * 0.06} className="h-full">
             <CertificationCard cert={cert} onView={setActive} />
           </Reveal>
         ))}

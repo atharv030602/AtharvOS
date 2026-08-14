@@ -4,6 +4,7 @@ import { siteConfig, heroRoles } from "@/config/site";
 import { useRotatingText } from "@/hooks/use-rotating-text";
 import { rotateText, fadeUp, staggerContainer } from "@/lib/motion";
 import { ButtonLink, ButtonAnchor } from "@/components/primitives/ActionButton";
+import { ViewportFrame } from "@/components/primitives/ViewportFrame";
 import { GithubIcon, LinkedinIcon } from "@/components/primitives/icons";
 
 export function Hero() {
@@ -15,15 +16,15 @@ export function Hero() {
         <motion.div variants={staggerContainer} initial="hidden" animate="show">
           <motion.p
             variants={fadeUp}
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-surface-elevated/60 px-3 py-1 font-mono text-xs text-muted-foreground"
+            className="-rotate-2 inline-flex items-center gap-1.5 border border-accent/50 bg-accent/5 px-2.5 py-0.5 font-mono text-[11px] font-bold uppercase tracking-wider text-accent"
           >
-            <span className="size-1.5 rounded-full bg-emerald-400" />
+            <span className="size-1.5 shrink-0 bg-current" />
             Open to Software Engineering roles
           </motion.p>
 
           <motion.h1
             variants={fadeUp}
-            className="text-gradient mt-6 text-4xl font-bold leading-[1.05] tracking-tight sm:text-6xl"
+            className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-6xl"
           >
             {siteConfig.owner}
           </motion.h1>
@@ -40,7 +41,7 @@ export function Hero() {
                 initial="enter"
                 animate="center"
                 exit="exit"
-                className="text-gradient"
+                className="text-accent"
               >
                 {heroRoles[roleIndex]}
               </motion.span>
@@ -64,7 +65,7 @@ export function Hero() {
             <ButtonAnchor
               href={siteConfig.social.github}
               variant="ghost"
-              className="rounded-full border border-border bg-surface-elevated/60 p-2.5 text-foreground hover:border-brand/50 hover:bg-surface-elevated hover:text-brand"
+              className="border-line bg-surface-elevated/60 p-2.5 text-foreground hover:border-accent/50 hover:bg-surface-elevated hover:text-accent"
               aria-label="GitHub profile"
             >
               <GithubIcon className="size-5" />
@@ -72,7 +73,7 @@ export function Hero() {
             <ButtonAnchor
               href={siteConfig.social.linkedin}
               variant="ghost"
-              className="rounded-full border border-border bg-surface-elevated/60 p-2.5 text-foreground hover:border-brand/50 hover:bg-surface-elevated hover:text-brand"
+              className="border-line bg-surface-elevated/60 p-2.5 text-foreground hover:border-accent/50 hover:bg-surface-elevated hover:text-accent"
               aria-label="LinkedIn profile"
             >
               <LinkedinIcon className="size-5" />
@@ -84,27 +85,21 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="animate-float relative mx-auto flex w-full max-w-xs items-center justify-center lg:max-w-sm"
+          className="relative mx-auto w-full max-w-xs lg:max-w-sm"
         >
-          {/* Glow ring behind the portrait */}
-          <div
-            aria-hidden="true"
-            className="absolute -z-10 size-64 rounded-full bg-[radial-gradient(circle,var(--brand)_0%,var(--brand-secondary)_55%,transparent_75%)] opacity-40 blur-[60px] sm:size-72"
+          <ViewportFrame
+            src={siteConfig.portraitUrl}
+            alt={`Portrait of ${siteConfig.owner}`}
+            figure="01"
+            label="Portrait"
+            aspect="portrait"
+            imgClassName="object-top"
+            loading="eager"
+            fetchPriority="high"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).style.visibility = "hidden";
+            }}
           />
-          <div className="relative size-64 overflow-hidden rounded-full ring-4 ring-brand/50 shadow-[0_0_70px_-10px_var(--brand)] sm:size-72">
-            <img
-              src={siteConfig.portraitUrl}
-              alt={`Portrait of ${siteConfig.owner}`}
-              width={516}
-              height={1042}
-              loading="eager"
-              fetchPriority="high"
-              className="size-full object-cover object-top"
-              onError={(e) => {
-                (e.currentTarget as HTMLImageElement).style.visibility = "hidden";
-              }}
-            />
-          </div>
         </motion.div>
       </div>
 

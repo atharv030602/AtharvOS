@@ -2,7 +2,7 @@ import type { Variants } from "framer-motion";
 
 /** Reusable, calm motion variants. Distance kept small on purpose. */
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 18 },
   show: {
     opacity: 1,
     y: 0,

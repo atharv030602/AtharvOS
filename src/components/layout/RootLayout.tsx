@@ -1,10 +1,12 @@
 import { Outlet, useRouterState } from "@tanstack/react-router";
 import { useEffect } from "react";
+import { MotionConfig } from "framer-motion";
 import Lenis from "lenis";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { AuroraBackground } from "@/components/background/AuroraBackground";
 import { LoadingScreen } from "@/components/system/LoadingScreen";
+import { CustomCursor } from "@/components/system/CustomCursor";
 import { CommandPalette } from "@/components/command/CommandPalette";
 
 export function RootLayout() {
@@ -32,15 +34,18 @@ export function RootLayout() {
   }, [pathname]);
 
   return (
-    <div className="relative flex min-h-dvh flex-col">
-      <AuroraBackground />
-      <LoadingScreen />
-      <CommandPalette />
-      {!isTerminal && <Navbar />}
-      <main className="flex-1">
-        <Outlet />
-      </main>
-      {!isTerminal && <Footer />}
-    </div>
+    <MotionConfig reducedMotion="user">
+      <div className="relative flex min-h-dvh flex-col">
+        <AuroraBackground />
+        <CustomCursor />
+        <LoadingScreen />
+        <CommandPalette />
+        {!isTerminal && <Navbar />}
+        <main className="flex-1">
+          <Outlet />
+        </main>
+        {!isTerminal && <Footer />}
+      </div>
+    </MotionConfig>
   );
 }

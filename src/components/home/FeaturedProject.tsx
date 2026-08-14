@@ -20,7 +20,7 @@ export function FeaturedProject() {
         <Link
           to="/project/$slug"
           params={{ slug: p.slug }}
-          className="group block overflow-hidden rounded-3xl border border-border bg-surface/60 transition-all duration-300 hover:border-brand/40 hover:shadow-[0_0_60px_-24px_var(--brand)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+          className="group block overflow-hidden border border-border bg-surface/60 transition-all duration-150 hover:-translate-y-0.5 hover:border-line-bright focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
           <div className="grid gap-0 lg:grid-cols-[1.1fr_1fr]">
             <div className="p-8 sm:p-10">
@@ -41,12 +41,12 @@ export function FeaturedProject() {
                 <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </span>
             </div>
-            <div className="relative min-h-52 border-t border-border bg-gradient-to-br from-brand/10 via-brand-secondary/5 to-transparent p-8 lg:border-l lg:border-t-0">
+            <div className="relative min-h-52 border-t border-border bg-surface-elevated/30 p-8 lg:border-l lg:border-t-0">
               <div className="grid h-full grid-cols-2 gap-3">
                 {p.moduleDiagram.slice(0, 6).map((m) => (
                   <div
                     key={m.label}
-                    className="rounded-xl border border-border bg-surface-elevated/60 p-3"
+                    className="border border-border bg-surface-elevated/60 p-3"
                   >
                     <p className="font-mono text-xs font-medium text-foreground">{m.label}</p>
                     {m.detail && (

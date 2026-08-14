@@ -34,12 +34,12 @@ export function LoadingScreen() {
               {siteConfig.name}
             </p>
             <div className="mt-4 flex items-center justify-center gap-2 font-mono text-xs text-muted-foreground">
-              <span className="size-2 animate-pulse rounded-full bg-brand" />
+              <span className="size-2 animate-pulse bg-accent" />
               {steps[step]}
             </div>
             <div className="mx-auto mt-4 h-px w-40 overflow-hidden bg-border">
               <motion.div
-                className="h-full bg-brand"
+                className="h-full bg-accent"
                 initial={{ width: "0%" }}
                 animate={{ width: `${((step + 1) / steps.length) * 100}%` }}
                 transition={{ duration: 0.3 }}

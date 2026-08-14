@@ -5,14 +5,13 @@ import { cn } from "@/lib/utils";
 type Variant = "primary" | "secondary" | "ghost";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 border font-display px-5 py-2.5 text-sm font-medium transition-all duration-150 ease-out hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
-  primary:
-    "bg-brand text-primary-foreground hover:bg-brand/90 hover:shadow-[0_0_30px_-8px_var(--brand)]",
+  primary: "border-accent bg-accent text-primary-foreground hover:bg-[color-mix(in_oklab,var(--accent)_88%,white)]",
   secondary:
-    "border border-border bg-surface-elevated/60 text-foreground hover:border-brand/40 hover:bg-surface-elevated",
-  ghost: "text-muted-foreground hover:text-foreground",
+    "border-line bg-transparent text-foreground hover:border-line-bright hover:bg-surface-elevated/60",
+  ghost: "border-transparent text-muted-foreground hover:text-foreground hover:bg-surface-elevated/40",
 };
 
 interface CommonProps {

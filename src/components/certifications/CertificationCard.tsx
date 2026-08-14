@@ -3,17 +3,8 @@ import type { Certification } from "@/data/certifications";
 import { formatCertDate, issuerInitials } from "@/lib/certifications";
 import { cn } from "@/lib/utils";
 
-const categoryStyles: Record<string, string> = {
-  Java: "border-orange-500/40 bg-orange-500/10 text-orange-300",
-  Backend: "border-brand/40 bg-brand/10 text-brand",
-  Cloud: "border-sky-500/40 bg-sky-500/10 text-sky-300",
-  AI: "border-brand-secondary/40 bg-brand-secondary/10 text-brand-secondary",
-  Cybersecurity: "border-red-500/40 bg-red-500/10 text-red-300",
-  Database: "border-emerald-500/40 bg-emerald-500/10 text-emerald-300",
-  DevOps: "border-violet-500/40 bg-violet-500/10 text-violet-300",
-  Frontend: "border-brand-accent/40 bg-brand-accent/10 text-brand-accent",
-  Other: "border-slate-500/40 bg-slate-500/10 text-slate-300",
-};
+/** Every category shares the single accent — differentiated by label only. */
+const categoryStyle = "border-accent/40 bg-accent/5 text-accent";
 
 interface CertificationCardProps {
   cert: Certification;
@@ -24,11 +15,11 @@ export function CertificationCard({ cert, onView }: CertificationCardProps) {
   const hasPdf = Boolean(cert.certificatePdf);
   return (
     <article
-      className="flex h-full flex-col rounded-2xl border border-border bg-surface/60 p-5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand/40 hover:shadow-[0_0_40px_-16px_var(--brand)]"
+      className="flex h-full flex-col border border-border bg-surface/60 p-5 backdrop-blur-sm transition-all duration-150 hover:-translate-y-0.5 hover:border-line-bright"
       aria-labelledby={`cert-${cert.id}-title`}
     >
       <div className="flex items-start gap-3">
-        <span className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-border bg-surface-elevated/60">
+        <span className="flex size-11 shrink-0 items-center justify-center overflow-hidden border border-border bg-surface-elevated/60">
           {cert.logo ? (
             <img
               src={cert.logo}
@@ -37,7 +28,7 @@ export function CertificationCard({ cert, onView }: CertificationCardProps) {
               className="size-full object-contain p-1.5"
             />
           ) : (
-            <span className="font-mono text-sm font-bold text-brand" aria-hidden="true">
+            <span className="font-mono text-sm font-bold text-accent" aria-hidden="true">
               {issuerInitials(cert.issuer)}
             </span>
           )}
@@ -45,16 +36,16 @@ export function CertificationCard({ cert, onView }: CertificationCardProps) {
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-1.5">
             {cert.verified ? (
-              <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] font-medium text-emerald-400">
+              <span className="inline-flex items-center gap-1 border border-accent/40 bg-accent/5 px-2 py-0.5 font-mono text-[10px] font-medium text-accent">
                 <BadgeCheck className="size-3" aria-hidden="true" /> Verified
               </span>
             ) : (
-              <span className="inline-flex items-center rounded-full border border-slate-500/40 bg-slate-500/10 px-2 py-0.5 font-mono text-[10px] font-medium text-slate-300">
+              <span className="inline-flex items-center border border-border bg-surface-elevated/60 px-2 py-0.5 font-mono text-[10px] font-medium text-muted-foreground">
                 Issued
               </span>
             )}
             {cert.featured && (
-              <span className="inline-flex items-center gap-1 rounded-full border border-amber-500/40 bg-amber-500/10 px-2 py-0.5 font-mono text-[10px] font-medium text-amber-400">
+              <span className="inline-flex items-center gap-1 border border-accent/40 bg-accent/5 px-2 py-0.5 font-mono text-[10px] font-medium text-accent">
                 <Star className="size-3" aria-hidden="true" /> Featured
               </span>
             )}
@@ -72,16 +63,11 @@ export function CertificationCard({ cert, onView }: CertificationCardProps) {
       </div>
 
       <div className="mt-4 flex flex-wrap gap-1.5">
-        <span
-          className={cn(
-            "rounded-md border px-2 py-0.5 font-mono text-[11px]",
-            categoryStyles[cert.category] ?? categoryStyles.Other,
-          )}
-        >
+        <span className={cn("border px-2 py-0.5 font-mono text-[11px]", categoryStyle)}>
           {cert.category}
         </span>
         {cert.level && (
-          <span className="rounded-md border border-border bg-surface-elevated/60 px-2 py-0.5 font-mono text-[11px] text-muted-foreground">
+          <span className="border border-border bg-surface-elevated/60 px-2 py-0.5 font-mono text-[11px] text-muted-foreground">
             {cert.level}
           </span>
         )}
@@ -92,7 +78,7 @@ export function CertificationCard({ cert, onView }: CertificationCardProps) {
           {cert.skills.map((s) => (
             <li
               key={s}
-              className="rounded-md border border-border bg-surface-elevated/40 px-2 py-0.5 font-mono text-[11px] text-muted-foreground"
+              className="border border-border bg-surface-elevated/40 px-2 py-0.5 font-mono text-[11px] text-muted-foreground"
             >
               {s}
             </li>
@@ -112,7 +98,7 @@ export function CertificationCard({ cert, onView }: CertificationCardProps) {
             <button
               type="button"
               onClick={() => onView(cert)}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs text-foreground transition-colors hover:border-brand/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              className="inline-flex items-center gap-1.5 border border-border px-3 py-1.5 text-xs text-foreground transition-colors hover:border-line-bright focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               aria-label={`View ${cert.title} certificate`}
             >
               <Eye className="size-3.5" aria-hidden="true" /> View
@@ -120,7 +106,7 @@ export function CertificationCard({ cert, onView }: CertificationCardProps) {
             <a
               href={cert.certificatePdf}
               download
-              className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs text-foreground transition-colors hover:border-brand/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+              className="inline-flex items-center gap-1.5 border border-border px-3 py-1.5 text-xs text-foreground transition-colors hover:border-line-bright focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
               aria-label={`Download ${cert.title} certificate`}
             >
               <Download className="size-3.5" aria-hidden="true" /> Download
@@ -132,7 +118,7 @@ export function CertificationCard({ cert, onView }: CertificationCardProps) {
             href={cert.credentialUrl}
             target="_blank"
             rel="noreferrer noopener"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs text-foreground transition-colors hover:border-brand/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand"
+            className="inline-flex items-center gap-1.5 border border-border px-3 py-1.5 text-xs text-foreground transition-colors hover:border-line-bright focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             aria-label={`Verify ${cert.title} credential`}
           >
             <ExternalLink className="size-3.5" aria-hidden="true" /> Credential
