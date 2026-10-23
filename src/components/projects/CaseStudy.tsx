@@ -41,7 +41,10 @@ function BulletList({ items }: { items: string[] }) {
   return (
     <ul className="space-y-2.5">
       {items.map((item, i) => (
-        <li key={i} className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground">
+        <li
+          key={i}
+          className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground"
+        >
           <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
           {item}
         </li>
@@ -129,15 +132,15 @@ export function CaseStudy({ project: p }: { project: Project }) {
             {stackRows
               .filter((row) => p.techStack[row.key].length > 0)
               .map((row) => (
-              <div key={row.key} className="grid gap-2 py-3 sm:grid-cols-[160px_1fr] sm:gap-4">
-                <dt className="text-sm font-medium text-foreground">{row.label}</dt>
-                <dd className="flex flex-wrap gap-1.5">
-                  {p.techStack[row.key].map((item) => (
-                    <Tag key={item}>{item}</Tag>
-                  ))}
-                </dd>
-              </div>
-            ))}
+                <div key={row.key} className="grid gap-2 py-3 sm:grid-cols-[160px_1fr] sm:gap-4">
+                  <dt className="text-sm font-medium text-foreground">{row.label}</dt>
+                  <dd className="flex flex-wrap gap-1.5">
+                    {p.techStack[row.key].map((item) => (
+                      <Tag key={item}>{item}</Tag>
+                    ))}
+                  </dd>
+                </div>
+              ))}
           </dl>
         </Reveal>
 
@@ -207,7 +210,10 @@ export function CaseStudy({ project: p }: { project: Project }) {
           <DocSection title="Screenshots">
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {p.screenshots.map((shot, i) => (
-                <figure key={i} className="overflow-hidden rounded-xl border border-border bg-surface/40">
+                <figure
+                  key={i}
+                  className="overflow-hidden rounded-xl border border-border bg-surface/40"
+                >
                   <img
                     src={shot.src}
                     alt={shot.caption}

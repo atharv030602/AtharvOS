@@ -41,9 +41,7 @@ export const Route = createFileRoute("/certifications")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
-    scripts: [
-      { type: "application/ld+json", children: JSON.stringify(itemListJsonLd) },
-    ],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(itemListJsonLd) }],
   }),
   component: Certifications,
 });

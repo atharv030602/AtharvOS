@@ -20,7 +20,9 @@ export function TechRadar() {
             className="rounded-2xl border border-border bg-surface/50 p-5 backdrop-blur-sm"
           >
             <div className="flex items-baseline justify-between">
-              <h3 className={`font-display text-lg font-semibold ${ringStyle[r.ring].split(" ")[1]}`}>
+              <h3
+                className={`font-display text-lg font-semibold ${ringStyle[r.ring].split(" ")[1]}`}
+              >
                 {r.ring}
               </h3>
               <span className="font-mono text-xs text-muted-foreground">{items.length}</span>

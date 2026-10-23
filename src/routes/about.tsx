@@ -19,7 +19,10 @@ export const Route = createFileRoute("/about")({
           "The story, skills, tech radar and certifications of Atharv Mitkari — a Java backend developer exploring Agentic AI.",
       },
       { property: "og:title", content: `About — ${siteConfig.owner}` },
-      { property: "og:description", content: "Story, skills, tech radar and what I'm looking for." },
+      {
+        property: "og:description",
+        content: "Story, skills, tech radar and what I'm looking for.",
+      },
     ],
   }),
   component: About,

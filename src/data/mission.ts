@@ -14,7 +14,11 @@ export const mission: MissionItem[] = [
   { title: "Data Structures & Algorithms", status: "Learning", note: "Problem solving in Java" },
   { title: "Google ADK", status: "Learning", note: "Agent Development Kit fundamentals" },
   { title: "LangChain", status: "Learning", note: "LLM orchestration basics" },
-  { title: "Model Context Protocol (MCP)", status: "Exploring", note: "Tool/context standard for agents" },
+  {
+    title: "Model Context Protocol (MCP)",
+    status: "Exploring",
+    note: "Tool/context standard for agents",
+  },
   { title: "Multi-Agent Systems", status: "Exploring", note: "Coordination patterns" },
   { title: "Docker", status: "Exploring", note: "Containerizing the backend" },
   { title: "Oracle Cloud", status: "Exploring", note: "Deployment target" },

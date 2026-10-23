@@ -24,7 +24,11 @@ export function Navbar() {
           scrolled ? "glass py-2 shadow-[0_10px_40px_-24px_rgba(0,0,0,0.8)]" : "py-2",
         )}
       >
-        <Link to="/" className="group flex items-center gap-2" aria-label={`${siteConfig.name} home`}>
+        <Link
+          to="/"
+          className="group flex items-center gap-2"
+          aria-label={`${siteConfig.name} home`}
+        >
           <span className="flex size-8 items-center justify-center border border-accent/40 bg-accent/10 font-mono text-sm font-bold text-accent">
             A
           </span>
@@ -61,9 +65,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() =>
-              document.dispatchEvent(
-                new KeyboardEvent("keydown", { key: "k", metaKey: true }),
-              )
+              document.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true }))
             }
             aria-label="Open command palette"
             className="hidden items-center gap-1.5 rounded-lg border border-border px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand lg:flex"

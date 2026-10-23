@@ -52,7 +52,8 @@ export const projects: Project[] = [
   {
     slug: "resumefit-ai",
     name: "ResumeFit AI",
-    tagline: "A resume-to-job-description fit analyzer with a fully local, zero-cost matching engine",
+    tagline:
+      "A resume-to-job-description fit analyzer with a fully local, zero-cost matching engine",
     status: "Completed",
     featured: true,
     year: "2026",
@@ -91,14 +92,26 @@ export const projects: Project[] = [
     ],
     moduleDiagram: [
       { label: "Skill Dictionary", detail: "170+ curated tech/soft skills with alias matching" },
-      { label: "Local Matcher", detail: "Regex-based scan of resume + JD, fallback keyword extraction" },
+      {
+        label: "Local Matcher",
+        detail: "Regex-based scan of resume + JD, fallback keyword extraction",
+      },
       { label: "Scoring Engine", detail: "Matched/missing skills, fit score, suggestions" },
       { label: "Resume Optimizer", detail: "Generates a downloadable keyword-aligned resume" },
     ],
     databaseDesign: [
       {
         table: "analysis",
-        fields: ["id", "resume_text", "job_description", "fit_score", "matched_skills", "missing_skills", "suggestions", "created_at"],
+        fields: [
+          "id",
+          "resume_text",
+          "job_description",
+          "fit_score",
+          "matched_skills",
+          "missing_skills",
+          "suggestions",
+          "created_at",
+        ],
       },
     ],
     folderStructure: `resumefit-ai/
@@ -153,7 +166,8 @@ export const projects: Project[] = [
   {
     slug: "sunny-game-cafe",
     name: "Sunny Game Cafe",
-    tagline: "A full-stack booking & management platform for a game cafe — development completed, testing and deployment in progress",
+    tagline:
+      "A full-stack booking & management platform for a game cafe — development completed, testing and deployment in progress",
     status: "Building",
     featured: false,
     year: "2025 — Present",
@@ -196,11 +210,16 @@ export const projects: Project[] = [
     databaseDesign: [
       { table: "user", fields: ["id", "name", "email", "role", "created_at"] },
       { table: "station", fields: ["id", "name", "console_type", "is_active"] },
-      { table: "time_slot", fields: ["id", "station_id (FK)", "slot_date", "start_time", "end_time", "is_booked"] },
-      { table: "booking", fields: ["id", "user_id (FK)", "slot_id (FK)", "status", "total_amount", "created_at"] },
+      {
+        table: "time_slot",
+        fields: ["id", "station_id (FK)", "slot_date", "start_time", "end_time", "is_booked"],
+      },
+      {
+        table: "booking",
+        fields: ["id", "user_id (FK)", "slot_id (FK)", "status", "total_amount", "created_at"],
+      },
     ],
-    erDiagram:
-      "user 1—* booking; station 1—* time_slot 1—1 booking.",
+    erDiagram: "user 1—* booking; station 1—* time_slot 1—1 booking.",
     folderStructure: `sunny-game-cafe/
 ├── backend/
 │   ├── src/main/java/com/sunnygamecafe/
@@ -280,7 +299,11 @@ export const projects: Project[] = [
       languages: ["JavaScript", "HTML", "CSS"],
       frameworks: ["React.js", "React Router"],
       database: ["Planned: MySQL (backend integration)"],
-      architecture: ["Modular feature modules", "Component-based UI", "Separation of data & presentation"],
+      architecture: [
+        "Modular feature modules",
+        "Component-based UI",
+        "Separation of data & presentation",
+      ],
       authentication: ["Planned: role-based access (Owner / Advisor / Mechanic)"],
       deployment: ["Static hosting (Vite build)"],
       tools: ["Git", "GitHub", "VS Code"],
@@ -304,11 +327,23 @@ export const projects: Project[] = [
     databaseDesign: [
       { table: "customer", fields: ["id", "name", "phone", "email", "address"] },
       { table: "vehicle", fields: ["id", "customer_id (FK)", "reg_no", "make", "model", "year"] },
-      { table: "job_card", fields: ["id", "vehicle_id (FK)", "status", "opened_at", "closed_at", "notes"] },
+      {
+        table: "job_card",
+        fields: ["id", "vehicle_id (FK)", "status", "opened_at", "closed_at", "notes"],
+      },
       { table: "part", fields: ["id", "name", "sku", "unit_price", "stock_qty"] },
-      { table: "job_part", fields: ["id", "job_card_id (FK)", "part_id (FK)", "qty", "line_total"] },
-      { table: "invoice", fields: ["id", "job_card_id (FK)", "labour_total", "parts_total", "grand_total", "paid"] },
-      { table: "insurance", fields: ["id", "vehicle_id (FK)", "policy_no", "provider", "expiry_date"] },
+      {
+        table: "job_part",
+        fields: ["id", "job_card_id (FK)", "part_id (FK)", "qty", "line_total"],
+      },
+      {
+        table: "invoice",
+        fields: ["id", "job_card_id (FK)", "labour_total", "parts_total", "grand_total", "paid"],
+      },
+      {
+        table: "insurance",
+        fields: ["id", "vehicle_id (FK)", "policy_no", "provider", "expiry_date"],
+      },
     ],
     erDiagram:
       "customer 1—* vehicle 1—* job_card 1—* job_part *—1 part; job_card 1—1 invoice; vehicle 1—* insurance. (Planned schema for backend integration.)",
@@ -402,7 +437,10 @@ export const projects: Project[] = [
     ],
     databaseDesign: [
       { table: "user", fields: ["id", "name", "email", "password_hash", "created_at"] },
-      { table: "article", fields: ["id", "author_id (FK)", "title", "body", "category", "created_at"] },
+      {
+        table: "article",
+        fields: ["id", "author_id (FK)", "title", "body", "category", "created_at"],
+      },
       { table: "category", fields: ["id", "name"] },
     ],
     erDiagram: "user 1—* article *—1 category.",

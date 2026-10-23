@@ -1,12 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
-import {
-  AlertTriangle,
-  ChevronLeft,
-  ChevronRight,
-  ExternalLink,
-  Loader2,
-} from "lucide-react";
+import { AlertTriangle, ChevronLeft, ChevronRight, ExternalLink, Loader2 } from "lucide-react";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 
@@ -42,9 +36,7 @@ function ErrorFallback({ file }: { file: string }) {
         <AlertTriangle className="size-5 text-destructive" aria-hidden="true" />
       </span>
       <div className="space-y-1">
-        <p className="text-sm font-medium text-foreground">
-          The inline preview couldn’t load.
-        </p>
+        <p className="text-sm font-medium text-foreground">The inline preview couldn’t load.</p>
         <p className="text-sm text-muted-foreground">
           Open the resume in a new tab or download the PDF instead.
         </p>

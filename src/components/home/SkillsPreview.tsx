@@ -23,9 +23,12 @@ export function SkillsPreview() {
             <div key={group.title}>
               <p className="text-sm font-medium text-foreground">{group.title}</p>
               <div className="mt-3 flex flex-wrap gap-1.5">
-                {group.categories.flatMap((c) => c.items).slice(0, 6).map((item) => (
-                  <Tag key={item}>{item}</Tag>
-                ))}
+                {group.categories
+                  .flatMap((c) => c.items)
+                  .slice(0, 6)
+                  .map((item) => (
+                    <Tag key={item}>{item}</Tag>
+                  ))}
               </div>
             </div>
           ))}

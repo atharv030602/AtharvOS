@@ -21,7 +21,9 @@ export function Timeline() {
             <p className="font-mono text-xs text-brand">{entry.period}</p>
             <h3 className="mt-1 font-medium text-foreground">{entry.title}</h3>
             {entry.org && <p className="text-sm text-muted-foreground">{entry.org}</p>}
-            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{entry.description}</p>
+            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+              {entry.description}
+            </p>
           </Reveal>
         );
       })}

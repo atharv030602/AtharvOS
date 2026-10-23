@@ -20,13 +20,7 @@ interface PdfViewerModalProps {
  * Lazy PDF preview — the <iframe> mounts only while the dialog is open, so no
  * certificate PDF is fetched at startup (loaded only when requested).
  */
-export function PdfViewerModal({
-  open,
-  onOpenChange,
-  title,
-  subtitle,
-  file,
-}: PdfViewerModalProps) {
+export function PdfViewerModal({ open, onOpenChange, title, subtitle, file }: PdfViewerModalProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-4xl gap-0 overflow-hidden p-0">

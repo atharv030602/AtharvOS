@@ -37,9 +37,7 @@ export function CertificationsExplorer() {
   }, [query, selected, sort]);
 
   const toggleCategory = (cat: CertificationCategory) =>
-    setSelected((prev) =>
-      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat],
-    );
+    setSelected((prev) => (prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]));
 
   const clearFilters = () => {
     setSelected([]);
@@ -86,7 +84,11 @@ export function CertificationsExplorer() {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Filter by category">
+        <div
+          className="flex flex-wrap items-center gap-2"
+          role="group"
+          aria-label="Filter by category"
+        >
           {available.map((cat) => {
             const on = selected.includes(cat);
             return (

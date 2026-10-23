@@ -7,7 +7,7 @@
    - `mem_/index.md` says **Sunny Game Cafe** is "the current flagship project."
    - The actual code (`projects.ts`) has `featured: true` on **ResumeFit AI**, and `false`/unset on the other two.
 
-   Decide which one is actually the flagship today and make all three agree (probably ResumeFit AI, since it's the newest, fully completed *and deployed* project with a strong story — but that's your call).
+   Decide which one is actually the flagship today and make all three agree (probably ResumeFit AI, since it's the newest, fully completed _and deployed_ project with a strong story — but that's your call).
 
 2. **Timeline is missing ResumeFit AI entirely.** `timeline.ts` jumps from Garage ERP (2024–Present) → MCA → "Now: exploring Agentic AI," with no milestone for shipping and deploying ResumeFit AI in 2026. Given it's a completed, live, deployed project with a genuinely good engineering story (pivoted off three AI providers to a free local engine), it's a strong addition to the story timeline.
 

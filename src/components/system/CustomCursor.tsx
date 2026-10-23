@@ -40,7 +40,9 @@ export function CustomCursor() {
 
     const over = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
-      const isInteractive = !!target?.closest("a, button, img, [role='button'], input, textarea, select");
+      const isInteractive = !!target?.closest(
+        "a, button, img, [role='button'], input, textarea, select",
+      );
       dotInnerRef.current?.classList.toggle("scale-[2.5]", isInteractive);
     };
 
@@ -61,7 +63,11 @@ export function CustomCursor() {
       {/* Guide lines: vertical line moves horizontally, horizontal line moves vertically */}
       <div ref={lineYRef} className="absolute inset-y-0 left-0 w-px bg-accent/15" />
       <div ref={lineXRef} className="absolute inset-x-0 top-0 h-px bg-accent/15" />
-      <div ref={dotWrapRef} className="absolute left-0 top-0" style={{ transform: "translate(-9999px, -9999px)" }}>
+      <div
+        ref={dotWrapRef}
+        className="absolute left-0 top-0"
+        style={{ transform: "translate(-9999px, -9999px)" }}
+      >
         <div
           ref={dotInnerRef}
           className="size-2.5 -translate-x-1/2 -translate-y-1/2 bg-accent transition-transform duration-150 ease-out"

@@ -26,8 +26,7 @@ export const timeline: TimelineEntry[] = [
     period: "2020 — 2023",
     title: "BCA — Bachelor of Computer Applications",
     org: "City Premier College, Nagpur",
-    description:
-      "Built programming foundations: OOP, databases and web basics (CGPA 7.30).",
+    description: "Built programming foundations: OOP, databases and web basics (CGPA 7.30).",
     kind: "education",
   },
   {

@@ -44,13 +44,12 @@ export function FeaturedProject() {
             <div className="relative min-h-52 border-t border-border bg-surface-elevated/30 p-8 lg:border-l lg:border-t-0">
               <div className="grid h-full grid-cols-2 gap-3">
                 {p.moduleDiagram.slice(0, 6).map((m) => (
-                  <div
-                    key={m.label}
-                    className="border border-border bg-surface-elevated/60 p-3"
-                  >
+                  <div key={m.label} className="border border-border bg-surface-elevated/60 p-3">
                     <p className="font-mono text-xs font-medium text-foreground">{m.label}</p>
                     {m.detail && (
-                      <p className="mt-1 text-[11px] leading-snug text-muted-foreground">{m.detail}</p>
+                      <p className="mt-1 text-[11px] leading-snug text-muted-foreground">
+                        {m.detail}
+                      </p>
                     )}
                   </div>
                 ))}

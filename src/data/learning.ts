@@ -13,10 +13,22 @@ export interface LearningResource {
 }
 
 export const roadmap: RoadmapItem[] = [
-  { title: "Core Java & OOP", status: "Completed", detail: "Language fundamentals, collections, streams" },
+  {
+    title: "Core Java & OOP",
+    status: "Completed",
+    detail: "Language fundamentals, collections, streams",
+  },
   { title: "SQL & MySQL", status: "Completed", detail: "Schema design, joins, transactions" },
-  { title: "Spring Boot & REST", status: "Building", detail: "Controllers, services, JPA, security" },
-  { title: "Data Structures & Algorithms", status: "Learning", detail: "Problem solving for interviews" },
+  {
+    title: "Spring Boot & REST",
+    status: "Building",
+    detail: "Controllers, services, JPA, security",
+  },
+  {
+    title: "Data Structures & Algorithms",
+    status: "Learning",
+    detail: "Problem solving for interviews",
+  },
   { title: "Oracle Java Certification", status: "Learning", detail: "Exam preparation" },
   { title: "Agentic AI — Google ADK", status: "Learning", detail: "Agent fundamentals" },
   { title: "LangChain", status: "Learning", detail: "LLM orchestration" },

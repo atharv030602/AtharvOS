@@ -7,13 +7,7 @@ import { Reveal } from "@/components/primitives/Reveal";
 import { Tag } from "@/components/primitives/Tag";
 import { GithubIcon } from "@/components/primitives/icons";
 
-const cellShades = [
-  "bg-surface-elevated",
-  "bg-brand/25",
-  "bg-brand/45",
-  "bg-brand/70",
-  "bg-brand",
-];
+const cellShades = ["bg-surface-elevated", "bg-brand/25", "bg-brand/45", "bg-brand/70", "bg-brand"];
 
 export function GithubSection() {
   return (
@@ -81,7 +75,9 @@ export function GithubSection() {
                 )),
               )}
             </div>
-            <p className="mt-3 text-xs text-muted-foreground">A snapshot of recent commit rhythm.</p>
+            <p className="mt-3 text-xs text-muted-foreground">
+              A snapshot of recent commit rhythm.
+            </p>
           </Reveal>
 
           <Reveal className="border border-border bg-surface/50 p-5 backdrop-blur-sm">

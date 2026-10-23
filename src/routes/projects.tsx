@@ -16,7 +16,10 @@ export const Route = createFileRoute("/projects")({
           "Engineering projects by Atharv Mitkari, documented as case studies — including Garage ERP, a full-stack Spring Boot system.",
       },
       { property: "og:title", content: `Projects — ${siteConfig.owner}` },
-      { property: "og:description", content: "Real engineering work, documented like engineering." },
+      {
+        property: "og:description",
+        content: "Real engineering work, documented like engineering.",
+      },
     ],
   }),
   component: Projects,

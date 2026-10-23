@@ -69,7 +69,8 @@ export const aiLab: NotebookSection[] = [
       {
         title: "AI Resume Analyzer",
         status: "Coming Soon",
-        summary: "An LLM-assisted tool to give structured resume feedback against a job description.",
+        summary:
+          "An LLM-assisted tool to give structured resume feedback against a job description.",
         tags: ["LLM APIs", "Python"],
       },
       {
@@ -112,9 +113,24 @@ export const aiLab: NotebookSection[] = [
     title: "Resources",
     intro: "Docs and references I'm learning from.",
     entries: [
-      { title: "Google ADK Documentation", status: "Learning", summary: "Primary reference for agent building.", tags: ["Docs"] },
-      { title: "LangChain Docs", status: "Learning", summary: "Orchestration patterns and integrations.", tags: ["Docs"] },
-      { title: "MCP Specification", status: "Exploring", summary: "The protocol for tools and context.", tags: ["Spec"] },
+      {
+        title: "Google ADK Documentation",
+        status: "Learning",
+        summary: "Primary reference for agent building.",
+        tags: ["Docs"],
+      },
+      {
+        title: "LangChain Docs",
+        status: "Learning",
+        summary: "Orchestration patterns and integrations.",
+        tags: ["Docs"],
+      },
+      {
+        title: "MCP Specification",
+        status: "Exploring",
+        summary: "The protocol for tools and context.",
+        tags: ["Spec"],
+      },
     ],
   },
   {
@@ -122,8 +138,18 @@ export const aiLab: NotebookSection[] = [
     title: "Future Ideas",
     intro: "Things I want to try once the fundamentals are solid.",
     entries: [
-      { title: "Multi-agent task planner", status: "Planned", summary: "Coordinating multiple agents on a shared goal.", tags: ["Multi-Agent"] },
-      { title: "Agent for Garage ERP", status: "Planned", summary: "An assistant that answers questions over garage data.", tags: ["MCP", "Java"] },
+      {
+        title: "Multi-agent task planner",
+        status: "Planned",
+        summary: "Coordinating multiple agents on a shared goal.",
+        tags: ["Multi-Agent"],
+      },
+      {
+        title: "Agent for Garage ERP",
+        status: "Planned",
+        summary: "An assistant that answers questions over garage data.",
+        tags: ["MCP", "Java"],
+      },
     ],
   },
 ];

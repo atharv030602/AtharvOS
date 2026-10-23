@@ -18,7 +18,8 @@ export const siteConfig = {
   title: "AtharvOS | Java Backend Developer",
   description:
     "Atharv Mitkari — Software Engineer specializing in Java backend development with Spring Boot, REST APIs and MySQL, actively exploring Agentic AI.",
-  heroHeadline: "Building scalable backend systems today. Exploring intelligent AI systems for tomorrow.",
+  heroHeadline:
+    "Building scalable backend systems today. Exploring intelligent AI systems for tomorrow.",
   location: "Nagpur, Maharashtra, India",
   email: "atharvmitkari90@gmail.com",
   // Real profile links

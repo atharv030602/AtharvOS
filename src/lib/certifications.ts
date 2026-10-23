@@ -1,7 +1,4 @@
-import type {
-  Certification,
-  CertificationCategory,
-} from "@/data/certifications";
+import type { Certification, CertificationCategory } from "@/data/certifications";
 
 /** All filterable categories, in display order. */
 export const CERT_CATEGORIES: CertificationCategory[] = [
@@ -16,12 +13,7 @@ export const CERT_CATEGORIES: CertificationCategory[] = [
   "Other",
 ];
 
-export type CertSort =
-  | "newest"
-  | "oldest"
-  | "issuer"
-  | "category"
-  | "alphabetical";
+export type CertSort = "newest" | "oldest" | "issuer" | "category" | "alphabetical";
 
 export const CERT_SORT_OPTIONS: { value: CertSort; label: string }[] = [
   { value: "newest", label: "Newest First" },
@@ -48,10 +40,7 @@ export function formatCertDate(date: string): string {
   return label;
 }
 
-export function sortCertifications(
-  list: Certification[],
-  sort: CertSort,
-): Certification[] {
+export function sortCertifications(list: Certification[], sort: CertSort): Certification[] {
   const copy = [...list];
   switch (sort) {
     case "newest":
@@ -79,23 +68,13 @@ export function filterCertifications(
       options.categories.length === 0 || options.categories.includes(c.category);
     if (!matchesCategory) return false;
     if (!q) return true;
-    const haystack = [
-      c.title,
-      c.issuer,
-      c.category,
-      ...c.skills,
-    ]
-      .join(" ")
-      .toLowerCase();
+    const haystack = [c.title, c.issuer, c.category, ...c.skills].join(" ").toLowerCase();
     return haystack.includes(q);
   });
 }
 
 /** Latest featured certifications, newest first. */
-export function getFeaturedCertifications(
-  list: Certification[],
-  limit?: number,
-): Certification[] {
+export function getFeaturedCertifications(list: Certification[], limit?: number): Certification[] {
   const featured = sortCertifications(
     list.filter((c) => c.featured),
     "newest",

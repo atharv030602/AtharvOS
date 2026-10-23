@@ -14,11 +14,24 @@ export const skillGroups: SkillGroup[] = [
     description: "Tools I use to build real projects today.",
     categories: [
       { label: "Languages", items: ["Java", "Python", "SQL", "JavaScript", "HTML", "CSS"] },
-      { label: "Backend", items: ["Spring Boot", "FastAPI", "Hibernate", "JDBC", "JSP", "Servlets", "REST APIs"] },
+      {
+        label: "Backend",
+        items: ["Spring Boot", "FastAPI", "Hibernate", "JDBC", "JSP", "Servlets", "REST APIs"],
+      },
       { label: "Frontend", items: ["React.js", "Streamlit"] },
       { label: "Database", items: ["MySQL"] },
       { label: "Tools", items: ["Git", "GitHub", "Maven", "VS Code"] },
-      { label: "Concepts", items: ["OOP", "Collections Framework", "Exception Handling", "MVC Architecture", "REST APIs", "DSA"] },
+      {
+        label: "Concepts",
+        items: [
+          "OOP",
+          "Collections Framework",
+          "Exception Handling",
+          "MVC Architecture",
+          "REST APIs",
+          "DSA",
+        ],
+      },
     ],
   },
   {
@@ -34,7 +47,10 @@ export const skillGroups: SkillGroup[] = [
     description: "Reading, experimenting, forming an opinion.",
     categories: [
       { label: "Cloud & DevOps", items: ["Docker", "Oracle Cloud"] },
-      { label: "Agentic AI", items: ["Model Context Protocol (MCP)", "Multi-Agent Systems", "LLM APIs"] },
+      {
+        label: "Agentic AI",
+        items: ["Model Context Protocol (MCP)", "Multi-Agent Systems", "LLM APIs"],
+      },
     ],
   },
 ];

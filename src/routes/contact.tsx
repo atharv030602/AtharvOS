@@ -17,7 +17,10 @@ export const Route = createFileRoute("/contact")({
           "Have an opportunity? Get in touch with Atharv Mitkari — a Java backend developer open to software engineering roles.",
       },
       { property: "og:title", content: `Contact — ${siteConfig.owner}` },
-      { property: "og:description", content: "Have an opportunity? Let's build something meaningful together." },
+      {
+        property: "og:description",
+        content: "Have an opportunity? Let's build something meaningful together.",
+      },
     ],
   }),
   component: Contact,
@@ -66,7 +69,10 @@ function Contact() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.1} className="rounded-2xl border border-border bg-surface/50 p-6 backdrop-blur-sm sm:p-8">
+        <Reveal
+          delay={0.1}
+          className="rounded-2xl border border-border bg-surface/50 p-6 backdrop-blur-sm sm:p-8"
+        >
           <ContactForm />
         </Reveal>
       </div>

@@ -64,7 +64,11 @@ function Learning() {
               className="flex items-start gap-3 rounded-2xl border border-border bg-surface/50 p-5 backdrop-blur-sm"
             >
               <span className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg bg-brand/10 text-brand">
-                {res.type === "Book" ? <BookOpen className="size-4" /> : <GraduationCap className="size-4" />}
+                {res.type === "Book" ? (
+                  <BookOpen className="size-4" />
+                ) : (
+                  <GraduationCap className="size-4" />
+                )}
               </span>
               <div>
                 <p className="font-medium text-foreground">{res.title}</p>
