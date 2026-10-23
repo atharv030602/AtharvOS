@@ -50,54 +50,163 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: "resumefit-ai",
-    name: "ResumeFit AI",
+    slug: "career-assistant",
+    name: "Multi-Agent Career Assistant",
     tagline:
-      "A resume-to-job-description fit analyzer with a fully local, zero-cost matching engine",
+      "A LangGraph app where 5 AI agents turn a resume into a plan — with you approving each step",
     status: "Completed",
     featured: true,
     year: "2026",
     summaryLine:
-      "A FastAPI + Streamlit app that scores how well a resume matches a job description using a curated 170+ skill keyword-matching engine — no paid AI API, deployed free on Render and Streamlit Community Cloud.",
-    tags: ["FastAPI", "Streamlit", "Python", "Keyword Matching", "REST API"],
+      "Five LangGraph agents review a resume, find skill gaps for a target role, build a learning roadmap and an interview kit — pausing at human-in-the-loop checkpoints. FastAPI + Streamlit, deployed live.",
+    tags: ["LangGraph", "Multi-Agent", "Human-in-the-Loop", "FastAPI", "Streamlit", "Python"],
     links: {
-      github: "https://github.com/atharv030602/Resume-Analyzer",
-      demo: "https://resume-analyzer-nk4wmappwmh2hdz3prkoh4d.streamlit.app/",
+      github: "https://github.com/atharv030602/Career-Assistant",
+      demo: "https://career-assistant-aramcbluxmynoo3vtvrkvj.streamlit.app/",
     },
     overview:
-      "ResumeFit AI analyzes how well a resume matches a specific job description and returns an instant fit score, matched/missing skills, targeted suggestions, and a downloadable optimized resume. It started as an agentic, Claude-API-powered pipeline, but after running into real-world constraints — a free-tier quota of zero, a billing wall, and a network that couldn't reach a third provider — I rebuilt the matching engine as a fully local, deterministic system: a curated dictionary of 170+ tech and soft skills matched via regex against both documents, with a fallback pass that catches tool/brand names the dictionary misses. Zero API cost, zero external dependency, instant results.",
+      "A multi-agent career planner built on LangGraph. You paste a resume and a target role; five specialised agents work over a typed shared state — Resume Review, Skill Gap, Job Match, Learning Roadmap and Interview Prep. The graph pauses twice so you stay in control: once to approve the skill gaps and set your weekly hours, and once to pick interview focus topics. Every agent has deterministic logic, and an LLM (served through OpenRouter) enriches the output when a key is configured — so the app always works, with or without AI.",
     whyBuilt:
-      "Originally built as the capstone of a self-directed 'ignition plan' into agentic AI. After trying to keep it running on a student budget, I hit the practical reality of AI-API-backed side projects: one provider's free tier had zero quota, another needed prepaid billing, and a third was unreachable from my network. Rather than gate a portfolio project behind someone else's billing dashboard or uptime, I rebuilt the core matching logic to be fully self-contained.",
+      "To go beyond single-prompt LLM demos and learn the parts of agentic engineering that matter in real products: explicit state, branching control flow, human approval steps, resumable sessions, and measuring whether agents actually do their job.",
     targetUsers:
-      "Job seekers who want to check and improve how well their resume matches a specific job description before applying.",
+      "Students and early-career engineers who want a concrete, role-specific plan — what to fix on the resume, what to learn, and what to prepare for interviews.",
     problemStatement:
-      "Generic resume advice doesn't account for a specific job description — candidates need a way to see exactly where their resume falls short against a given JD and what to fix, without depending on a paid AI service that could run out of quota or go down.",
+      "Generic career advice ignores the target role and the candidate's actual resume. An LLM alone gives fluent but unverifiable advice. The goal was a structured pipeline where each step is inspectable, testable, and approved by the user before the next one runs.",
     outcome:
-      "A live, fully working full-stack app: a FastAPI backend running a local keyword-matching engine, a Streamlit frontend with an instrument-panel-themed fit gauge, deployed free on Render and Streamlit Community Cloud — no AI API key required to run or deploy it.",
+      "A live LangGraph application with 5 agents, 2 human-in-the-loop checkpoints and a downloadable report — deployed on Render (FastAPI backend) and Streamlit Community Cloud, backed by 52 automated tests, an evaluation harness and a GitHub Actions CI pipeline.",
     techStack: {
       languages: ["Python"],
-      frameworks: ["FastAPI", "Streamlit"],
-      database: ["MySQL (optional, for result persistence)"],
-      architecture: ["Local keyword-matching engine (regex-based)", "REST API + Streamlit UI"],
+      frameworks: ["LangGraph", "LangChain Core", "FastAPI", "Streamlit", "Pydantic"],
+      database: ["LangGraph checkpointer (in-memory; SQLite optional)"],
+      architecture: [
+        "LangGraph state machine with conditional routing",
+        "Human-in-the-loop via interrupt / resume",
+        "Deterministic agents + optional LLM enrichment",
+      ],
       authentication: [],
-      deployment: ["Render (backend)", "Streamlit Community Cloud (frontend)"],
-      tools: ["Git", "GitHub", "pypdf"],
+      deployment: ["Render (backend)", "Streamlit Community Cloud (frontend)", "Docker (local)"],
+      tools: ["OpenRouter (LLM)", "pytest", "Ruff", "GitHub Actions", "LangSmith (optional)"],
     },
     architecture: [
-      "FastAPI backend exposes /api/analyze/agentic and /api/analyze/upload, both routed through a local matching engine — no external API calls.",
-      "A curated dictionary of 170+ tech and soft skills is scanned against both resume and job description via word-boundary regex, with multi-word terms (e.g. 'Spring Boot') handled via flexible whitespace matching.",
-      "A fallback pass extracts capitalized/acronym tokens from the JD that aren't in the dictionary, to catch tools and brands the curated list misses.",
-      "Fit score = matched keywords ÷ total JD keywords; missing skills drive specific, per-skill suggestions and a downloadable 'optimized resume' with a keyword alignment summary.",
-      "Streamlit frontend renders the score as an instrument-panel-themed gauge with matched/missing skill chips.",
+      "intake → resume_review → skill_gap → (job_match only when fit < 55) → [checkpoint: approve gaps + pace] → learning_roadmap → [checkpoint: interview focus] → interview → synthesize.",
+      "Agents share one typed state (Pydantic models); LangGraph's checkpointer stores each session by thread id so the graph can pause and resume via the API.",
+      "FastAPI exposes start / status / resume / report endpoints; the Streamlit UI renders each checkpoint as a form and sends the user's feedback back to resume the graph.",
+      "Each agent runs deterministic tools first (skill matcher, effort estimator, question bank, STAR scaffolder); the LLM only enriches results, so a provider outage never breaks a run.",
+      "An evaluation harness scores every run on node coverage, skill-gap precision/recall, roadmap coverage and interview coverage.",
     ],
     moduleDiagram: [
-      { label: "Skill Dictionary", detail: "170+ curated tech/soft skills with alias matching" },
-      {
-        label: "Local Matcher",
-        detail: "Regex-based scan of resume + JD, fallback keyword extraction",
-      },
-      { label: "Scoring Engine", detail: "Matched/missing skills, fit score, suggestions" },
-      { label: "Resume Optimizer", detail: "Generates a downloadable keyword-aligned resume" },
+      { label: "Resume Review", detail: "Strengths, red flags, stronger bullets" },
+      { label: "Skill Gap", detail: "Role-aware matching with synonyms, weighted fit score" },
+      { label: "Job Match", detail: "Suggests better-fit roles when fit is low" },
+      { label: "Learning Roadmap", detail: "Phased plan from the gaps you approved, at your pace" },
+      { label: "Interview Prep", detail: "Questions on your strengths and gaps + STAR scaffolds" },
+    ],
+    databaseDesign: [],
+    folderStructure: `career-assistant/
+├── backend/
+│   ├── app/
+│   │   ├── graph/
+│   │   │   ├── build.py          # LangGraph wiring, routing, interrupts
+│   │   │   ├── state.py          # Typed shared state
+│   │   │   └── agents/           # resume_review, skill_gap, job_match, roadmap, interview
+│   │   ├── services/             # role catalog, skill matching, sessions
+│   │   ├── routers/              # /api/sessions, /api/health
+│   │   └── main.py
+│   ├── eval/                     # evaluation harness + dataset
+│   └── tests/                    # pytest suite
+├── frontend/app.py               # Streamlit UI with checkpoint forms
+└── .github/workflows/ci.yml      # lint + tests on every push`,
+    screenshots: [],
+    features: [
+      "5 specialised agents orchestrated as a LangGraph state machine",
+      "2 human-in-the-loop checkpoints — approve skill gaps, set weekly hours, choose interview focus",
+      "Understands real job titles ('Java Developer', 'SDE-1', 'ML Engineer') and maps them to role skill profiles",
+      "Interview kit asks about your strengths and teaches your gaps — not generic template questions",
+      "Works with no API key; an LLM via OpenRouter enriches the output when configured",
+      "Downloadable markdown report of the full plan",
+      "52 automated tests, an evaluation harness and GitHub Actions CI",
+    ],
+    challenges: [
+      "Common titles like 'Backend Developer' matched no catalog role, so the fit score silently dropped to 0 — fixed with title normalisation and an alias table, and added regression tests for 14 real titles.",
+      "The skill matcher flagged CI/CD as missing on a resume that said 'GitHub Actions CI pipeline', and Embeddings as missing next to RAG and FAISS — fixed with wording synonyms and implied skills (RAG → embeddings).",
+      "The interview agent asked 'walk me through a project where you used X' for skills the candidate didn't have. Rebuilt it to ask experience questions on strengths and concept + learning questions on gaps.",
+      "Sessions live in memory, so a free-tier server restart wiped them and users saw a raw 404 mid-flow — the UI now detects an expired session and restarts with the user's input kept.",
+      "The LLM flagged past dates as 'in the future' because it doesn't know today's date — the prompt now includes it.",
+    ],
+    lessonsLearned: [
+      "Testing agents with a realistic resume end to end finds bugs that unit tests miss — every fix above came from reading real output.",
+      "Keeping deterministic logic as the backbone and using the LLM to enrich makes an agent system cheap, testable and resilient to provider outages.",
+      "Human-in-the-loop needs durable state; in-memory checkpoints are fine for a demo but need a persistent store for real users.",
+    ],
+    whatIdImprove: [
+      "Persist sessions in a database (Postgres/SQLite checkpointer) so they survive restarts.",
+      "Accept a real job description as input, not only a role title.",
+      "Add LLM-as-judge scoring to the evaluation harness for the free-text outputs.",
+    ],
+    tradeoffs: [
+      "Chose a curated role catalog over LLM-extracted requirements — less flexible, but predictable, testable and free.",
+      "In-memory checkpointer on free hosting: zero setup and cost, at the price of sessions expiring when the server sleeps.",
+    ],
+    futureRoadmap: [
+      "Job-description input with automatic requirement extraction",
+      "Persistent sessions and user history",
+      "Resume PDF upload",
+    ],
+  },
+  {
+    slug: "resumefit-ai",
+    name: "ResumeFit AI 2.0",
+    tagline:
+      "Resume-to-job fit analysis with ATS scoring, an AI agent and a RAG chat over your resume",
+    status: "Completed",
+    featured: false,
+    year: "2026",
+    summaryLine:
+      "A FastAPI + LangChain service that scores a resume against a job description — keyword + semantic fit, an ATS breakdown, AI suggestions and a RAG chat with memory — and still works with no API key. Deployed on Render + Streamlit.",
+    tags: ["FastAPI", "LangChain", "RAG", "Tool-calling Agent", "Streamlit", "Python"],
+    links: {
+      github: "https://github.com/atharv030602/Resume-Analyzer",
+      demo: "https://resume-analyzer-kbkdlrcig9ditbofwvqzbp.streamlit.app/",
+    },
+    overview:
+      "Paste or upload a resume (PDF/DOCX) and a job description to get a fit score, matched and missing skills, an ATS score breakdown (keyword coverage, semantic similarity, formatting, impact language), AI improvement suggestions and an optimized resume. A second tab is a RAG chat assistant with conversation memory that answers questions about your resume and the JD with citations. Version 1 was a purely local keyword engine; version 2 adds the AI layer on top — with every AI path falling back to the deterministic engine, so the service always answers.",
+    whyBuilt:
+      "Version 1 started as an LLM pipeline, but three providers failed in a row (zero free quota, a billing wall, a blocked network). I shipped a deterministic engine instead, then rebuilt the AI layer in version 2 with graceful degradation as a hard requirement — so the app never depends on one provider's uptime or billing.",
+    targetUsers:
+      "Job seekers who want to see exactly how their resume matches a specific job description and what to fix before applying.",
+    problemStatement:
+      "Generic resume advice ignores the specific JD, and AI-only tools fail completely when the provider is down or out of quota. The goal was a resume analyzer that is useful offline and smarter online.",
+    outcome:
+      "A live FastAPI backend on Render and a Streamlit frontend on Streamlit Community Cloud, running an LLM through OpenRouter's free tier with automatic fallback — backed by 23 automated tests and GitHub Actions CI.",
+    techStack: {
+      languages: ["Python"],
+      frameworks: ["FastAPI", "LangChain", "Streamlit", "Pydantic", "SQLAlchemy"],
+      database: [
+        "ChromaDB (local) / in-memory vector store (free hosting)",
+        "MySQL (optional history)",
+      ],
+      architecture: [
+        "Tool-calling agent with deterministic fallback",
+        "RAG with conversation memory and citations",
+        "Provider-agnostic LLM layer",
+      ],
+      authentication: [],
+      deployment: ["Render (backend)", "Streamlit Community Cloud (frontend)", "Docker (local)"],
+      tools: ["OpenRouter (LLM)", "pypdf", "python-docx", "pytest", "Ruff", "GitHub Actions"],
+    },
+    architecture: [
+      "One module (core/llm.py) owns the LLM provider, so Gemini, OpenAI or any OpenAI-compatible gateway like OpenRouter can be swapped by config.",
+      "A LangChain tool-calling agent uses 4 tools — JD keyword extraction, skill gap, semantic match and ATS score — and falls back to calling them directly when no LLM is available.",
+      "Semantic similarity uses provider embeddings when available and an offline character-n-gram hashing embedder otherwise.",
+      "The RAG chat splits the resume + JD into chunks, stores them in a vector store (ChromaDB locally, in-memory on free hosting) and answers with citations and per-session memory.",
+      "The original v1 keyword engine (170+ skills, regex matching) is kept as its own endpoint and as the fallback.",
+    ],
+    moduleDiagram: [
+      { label: "Keyword Engine", detail: "170+ skill dictionary, regex matching, fit score" },
+      { label: "ATS Scorer", detail: "Keyword, semantic, formatting and impact checks" },
+      { label: "Analysis Agent", detail: "LangChain tool-calling agent with fallback" },
+      { label: "RAG Chat", detail: "Vector store + memory + citations" },
+      { label: "LLM Layer", detail: "Provider-agnostic; OpenRouter in production" },
     ],
     databaseDesign: [
       {
@@ -117,50 +226,51 @@ export const projects: Project[] = [
     folderStructure: `resumefit-ai/
 ├── backend/
 │   ├── app/
-│   │   ├── routers/analysis.py     # /api/analyze, /api/analyze/agentic, /api/analyze/upload
-│   │   ├── services/
-│   │   │   ├── local_matcher.py    # Matching engine — score, suggestions, optimized resume
-│   │   │   ├── skills_data.py      # Curated skill dictionary
-│   │   │   └── pdf_service.py      # PDF text extraction
-│   │   ├── models.py / schemas.py
-│   │   └── main.py
-│   └── requirements.txt
-└── frontend/
-    ├── app.py                      # Streamlit UI
-    └── requirements.txt`,
+│   │   ├── core/llm.py              # The only module that talks to an LLM provider
+│   │   ├── routers/                 # /api/analyze (v1), /api/v2/analyze, /api/v2/chat
+│   │   └── services/
+│   │       ├── local_matcher.py     # v1 keyword engine (fallback)
+│   │       ├── ats_service.py       # ATS score breakdown
+│   │       ├── embeddings_service.py
+│   │       ├── rag_service.py / vectorstore.py / memory_service.py
+│   │       └── agents/              # tool-calling agent + tools
+│   └── tests/                       # pytest suite
+├── frontend/app.py                  # Streamlit — Fit Analysis + Resume Chat
+└── .github/workflows/ci.yml`,
     screenshots: [],
     features: [
-      "Instant resume-to-JD fit scoring — no AI API, no waiting, no cost",
-      "170+ skill keyword dictionary with alias/multi-word matching (e.g. 'Spring Boot', 'REST API')",
-      "Fallback extraction for tools/brands outside the curated dictionary",
-      "Matched/missing skill breakdown with targeted, per-skill suggestions",
-      "Downloadable 'optimized resume' with a keyword alignment summary",
-      "PDF resume upload support",
-      "Deployed free on Render + Streamlit Community Cloud",
+      "Fit score with matched and missing skills",
+      "ATS breakdown: keyword coverage, semantic similarity, formatting and impact language, with pass/fail checks",
+      "AI suggestions from a LangChain tool-calling agent",
+      "RAG chat over your resume + JD with memory and citations",
+      "PDF and DOCX resume upload",
+      "Runs with zero API keys — every AI path falls back to deterministic logic",
+      "23 automated tests and GitHub Actions CI",
     ],
     challenges: [
-      "Chased three different AI providers before hitting quota, billing, and network walls on each — decided to cut the dependency entirely rather than keep debugging third-party infrastructure.",
-      "A subtle regex bug (re.escape() also escapes spaces) silently broke every multi-word skill match ('Spring Boot', 'REST API') — caught it by testing a known-overlapping resume/JD pair and seeing an impossible 0% score.",
-      "Balancing a curated skill dictionary against a fallback heuristic so the tool stays useful for job descriptions outside pure tech roles.",
+      "Three LLM providers failed in a row in v1 (no free quota, billing wall, blocked network) — led to the design rule that no feature may depend on a single provider.",
+      "A regex bug (re.escape also escapes spaces) silently broke every multi-word skill like 'Spring Boot' — caught by testing a resume/JD pair with a known answer.",
+      "The production deploy failed because the container listened on a hardcoded port instead of the one Render assigns — fixed by reading $PORT.",
+      "Fitting an AI stack into a 512 MB free instance — used an in-memory vector store and lazy provider imports.",
     ],
     lessonsLearned: [
-      "A deterministic, rule-based system can be a genuinely better engineering choice than an LLM call — faster, free, and doesn't depend on someone else's uptime or billing.",
-      "Always test regex-based matching against a case where you already know the expected answer — silent failures (0 matches when there should be several) are easy to miss otherwise.",
-      "Deployment-time environment differences (Streamlit Cloud's secrets vs a local .env) are worth designing for from the start.",
+      "Design for the provider being down: a deterministic fallback turns an outage into a slightly less smart answer instead of an error.",
+      "Always test matching logic against a case where you already know the right answer.",
+      "Free hosting has real limits (sleep, memory, ephemeral disk); design the deploy around them from the start.",
     ],
     whatIdImprove: [
-      "Expand the skill dictionary and fallback heuristics to cover non-tech roles better.",
-      "Add lightweight semantic matching (e.g. synonym expansion) without reintroducing an API dependency.",
-      "Add MySQL-backed history so users can revisit past analyses.",
+      "Persistent vector store and chat history in production.",
+      "Evaluation of suggestion and chat quality (LLM-as-judge).",
+      "Better coverage of non-tech roles in the skill dictionary.",
     ],
     tradeoffs: [
-      "Chose deterministic keyword matching over LLM-based semantic analysis — less nuanced, but free, instant, and has no external dependency or failure mode.",
-      "Skipped database persistence in the deployed version to keep hosting free and setup trivial.",
+      "In-memory vectors on free hosting instead of ChromaDB — fits the 512 MB limit, but chat context resets when the server sleeps.",
+      "Free OpenRouter model instead of a paid one — zero cost, at the price of rate limits and variable quality.",
     ],
     futureRoadmap: [
-      "Optional LLM-powered mode as an opt-in upgrade path",
-      "Resume history and comparison across multiple JDs",
-      "Browser extension for one-click JD scraping",
+      "Compare one resume against several JDs",
+      "Saved analysis history",
+      "Browser extension to pull the JD from a job page",
     ],
   },
   {
@@ -395,92 +505,6 @@ export const projects: Project[] = [
       "SMS/email service reminders for customers",
       "Deployment with Docker",
     ],
-  },
-  {
-    slug: "gfg-clone",
-    name: "GeeksforGeeks Clone",
-    tagline: "A full-stack educational platform with authentication and article management",
-    status: "Completed",
-    year: "2023",
-    summaryLine:
-      "A responsive full-stack learning portal inspired by GeeksforGeeks, built with Java, MySQL and MVC — with user authentication and article management.",
-    tags: ["Java", "MySQL", "JavaScript", "MVC"],
-    links: {},
-    overview:
-      "A full-stack educational platform inspired by GeeksforGeeks. It supports browsing and reading technical articles, user authentication and article management, backed by a MySQL database and structured with MVC principles for maintainability.",
-    whyBuilt:
-      "To build a genuine full-stack application end-to-end — connecting a Java backend to a MySQL database, handling authentication, and applying MVC architecture on a product I use every day.",
-    targetUsers: "Students and developers browsing and managing technical tutorials and articles.",
-    problemStatement:
-      "Practise building a complete full-stack app: authentication, persistent content, and a maintainable server-side architecture rather than a static front end.",
-    outcome:
-      "A responsive platform with user authentication, article management and MySQL-backed content, organized with MVC layers for maintainability and scalability.",
-    techStack: {
-      languages: ["Java", "JavaScript", "HTML", "CSS", "SQL"],
-      frameworks: ["Servlets", "JSP", "JDBC"],
-      database: ["MySQL"],
-      architecture: ["MVC (Model–View–Controller)"],
-      authentication: ["Session-based user authentication"],
-      deployment: ["Apache Tomcat"],
-      tools: ["Git", "GitHub", "VS Code"],
-    },
-    architecture: [
-      "MVC structure: Servlets act as controllers, JSP renders views, and model classes encapsulate data and business logic.",
-      "JDBC data-access layer handles CRUD against MySQL for users and articles.",
-      "Session-based authentication protects article management actions.",
-    ],
-    moduleDiagram: [
-      { label: "Authentication", detail: "Sign up, login, sessions" },
-      { label: "Articles", detail: "Create, list and read articles" },
-      { label: "Content DB", detail: "MySQL persistence via JDBC" },
-      { label: "Views", detail: "JSP-rendered responsive pages" },
-    ],
-    databaseDesign: [
-      { table: "user", fields: ["id", "name", "email", "password_hash", "created_at"] },
-      {
-        table: "article",
-        fields: ["id", "author_id (FK)", "title", "body", "category", "created_at"],
-      },
-      { table: "category", fields: ["id", "name"] },
-    ],
-    erDiagram: "user 1—* article *—1 category.",
-    folderStructure: `gfg-clone/
-├── src/main/java/
-│   ├── controller/    # Servlets
-│   ├── model/         # Entities + business logic
-│   └── dao/           # JDBC data access
-├── src/main/webapp/
-│   ├── WEB-INF/       # JSP views
-│   └── assets/        # CSS / JS
-└── pom.xml`,
-    screenshots: [],
-    features: [
-      "User registration and login with session authentication",
-      "Article creation, listing and reading",
-      "MySQL-backed content persistence via JDBC",
-      "Responsive, category-based navigation",
-      "MVC architecture for maintainability and scalability",
-    ],
-    challenges: [
-      "Wiring a clean JDBC data-access layer without an ORM.",
-      "Keeping controller, model and view responsibilities cleanly separated under MVC.",
-      "Managing authentication state safely with sessions.",
-    ],
-    lessonsLearned: [
-      "MVC keeps a growing server-side app understandable and testable.",
-      "Understanding raw JDBC makes ORMs like Hibernate far easier to reason about later.",
-      "Authentication and validation deserve careful thought even in a learning project.",
-    ],
-    whatIdImprove: [
-      "Migrate persistence to Spring Boot + Hibernate/JPA.",
-      "Hash passwords with a stronger, salted algorithm and add input validation.",
-      "Add full-text search over articles.",
-    ],
-    tradeoffs: [
-      "Chose Servlets/JSP over a framework to learn the fundamentals of Java web development.",
-      "Used raw JDBC instead of an ORM to understand what an ORM abstracts away.",
-    ],
-    futureRoadmap: ["Spring Boot rewrite", "Search and tags", "Comments and bookmarks"],
   },
   {
     slug: "todo-app",

@@ -19,44 +19,44 @@ export interface ActivityItem {
  */
 export const pinnedRepos: Repo[] = [
   {
-    name: "garage-erp",
-    description: "Full-stack ERP for automobile service garages — Spring Boot + MySQL.",
-    language: "Java",
-    tags: ["Spring Boot", "MySQL", "REST"],
-    url: "https://github.com/atharvmitkari/garage-erp",
-    pinned: true,
-  },
-  {
-    name: "gfg-clone",
-    description: "Responsive clone of a technical learning portal.",
-    language: "JavaScript",
-    tags: ["HTML", "CSS", "JS"],
-    url: "https://github.com/atharvmitkari/gfg-clone",
-    pinned: true,
-  },
-  {
-    name: "todo-app",
-    description: "Task manager with persistent state and filtering.",
-    language: "JavaScript",
-    tags: ["Vanilla JS", "localStorage"],
-    url: "https://github.com/atharvmitkari/todo-app",
-    pinned: true,
-  },
-  {
-    name: "adk-experiments",
-    description: "Learning experiments with the Google Agent Development Kit.",
+    name: "Career-Assistant",
+    description: "LangGraph multi-agent career planner with human-in-the-loop checkpoints.",
     language: "Python",
-    tags: ["Google ADK", "LLM"],
-    url: "https://github.com/atharvmitkari",
+    tags: ["LangGraph", "FastAPI", "Streamlit"],
+    url: "https://github.com/atharv030602/Career-Assistant",
+    pinned: true,
+  },
+  {
+    name: "Resume-Analyzer",
+    description: "ResumeFit AI 2.0 — ATS scoring, tool-calling agent and RAG chat over a resume.",
+    language: "Python",
+    tags: ["FastAPI", "LangChain", "RAG"],
+    url: "https://github.com/atharv030602/Resume-Analyzer",
+    pinned: true,
+  },
+  {
+    name: "sunny-game-hub",
+    description: "Booking and management platform for a game cafe — React + Spring Boot.",
+    language: "TypeScript",
+    tags: ["React", "Spring Boot", "MySQL"],
+    url: "https://github.com/atharv030602/sunny-game-hub",
+    pinned: true,
+  },
+  {
+    name: "garage-erp",
+    description: "ERP for automobile service garages — customers, job cards, inventory, billing.",
+    language: "JavaScript",
+    tags: ["React", "Vite", "Dashboards"],
+    url: "https://github.com/atharv030602/garage-erp",
     pinned: true,
   },
 ];
 
 export const recentActivity: ActivityItem[] = [
-  { action: "Pushed commits to", repo: "garage-erp", when: "this week" },
-  { action: "Opened an issue in", repo: "garage-erp", when: "this week" },
-  { action: "Created", repo: "adk-experiments", when: "recently" },
-  { action: "Updated README in", repo: "gfg-clone", when: "recently" },
+  { action: "Pushed fixes to", repo: "Career-Assistant", when: "this week" },
+  { action: "Redeployed", repo: "Resume-Analyzer", when: "this week" },
+  { action: "Pushed commits to", repo: "sunny-game-hub", when: "recently" },
+  { action: "Pushed commits to", repo: "garage-erp", when: "recently" },
 ];
 
 /** 7x approx contribution intensity grid (0–4), rendered as CSS squares. */

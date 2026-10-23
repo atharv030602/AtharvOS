@@ -13,11 +13,11 @@ export const siteConfig = {
   name: "AtharvOS",
   owner: "Atharv Mitkari",
   role: "Software Engineer",
-  specialty: "Java Backend Developer",
+  specialty: "Backend & GenAI Developer",
   tagline: "Code. Build. Evolve.",
-  title: "AtharvOS | Java Backend Developer",
+  title: "AtharvOS | Backend & GenAI Developer",
   description:
-    "Atharv Mitkari — Software Engineer specializing in Java backend development with Spring Boot, REST APIs and MySQL, actively exploring Agentic AI.",
+    "Atharv Mitkari — Software Engineer building Java/Spring Boot and Python/FastAPI backends, and shipping LangGraph and LangChain apps.",
   heroHeadline:
     "Building scalable backend systems today. Exploring intelligent AI systems for tomorrow.",
   location: "Nagpur, Maharashtra, India",
@@ -58,5 +58,5 @@ export const heroRoles: string[] = [
   "Software Engineer",
   "Java Backend Developer",
   "Building with Spring Boot",
-  "Exploring Agentic AI",
+  "Shipping LangGraph multi-agent apps",
 ];

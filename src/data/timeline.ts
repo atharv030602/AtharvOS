@@ -70,11 +70,19 @@ export const timeline: TimelineEntry[] = [
     kind: "milestone",
   },
   {
+    period: "2026",
+    title: "ResumeFit AI 2.0 + Multi-Agent Career Assistant — shipped",
+    org: "Personal Projects",
+    description:
+      "Added a LangChain agent, ATS scoring and RAG chat to ResumeFit, and built a 5-agent LangGraph career planner with human-in-the-loop checkpoints. Both deployed live on Render + Streamlit, with automated tests and CI.",
+    kind: "milestone",
+  },
+  {
     period: "Now",
     title: "Exploring Agentic AI + seeking Software Engineering roles",
     org: "Self-directed",
     description:
-      "Studying Spring Boot, Google ADK and LangChain while staying rooted in Java backend engineering. Open to software and backend roles.",
+      "Building agentic apps with LangGraph and LangChain while staying rooted in Java backend engineering. Open to software, backend and GenAI roles.",
     kind: "milestone",
   },
 ];
