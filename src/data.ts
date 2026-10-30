@@ -233,6 +233,11 @@ export const education: TimelineItem[] = [
 
 export const certifications: { title: string; issuer: string; file?: string; url?: string }[] = [
   {
+    title: "HackerRank Orchestrate — built and deployed an AI agent",
+    issuer: "HackerRank · Oct 2026 · Final rank #1767 of 4,094",
+    file: "/certificates/hackerrank-orchestrate-oct-2026.png",
+  },
+  {
     title: "Generative AI for Software Developers",
     issuer: "IBM · Coursera",
     file: "/certificates/ibm-generative-ai-software-developers.pdf",
