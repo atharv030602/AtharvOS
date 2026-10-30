@@ -11,7 +11,7 @@ export const profile = {
   email: "atharvmitkari90@gmail.com",
   github: "https://github.com/atharv030602",
   linkedin: "https://www.linkedin.com/in/atharvmitkari/",
-  resume: "/resume.pdf",
+  resume: "/Atharv%20Resume.pdf",
   portrait: "/portrait.webp",
 };
 
@@ -238,16 +238,6 @@ export const certifications: { title: string; issuer: string; file?: string; url
     file: "/certificates/hackerrank-orchestrate-oct-2026.png",
   },
   {
-    title: "Generative AI for Software Developers",
-    issuer: "IBM · Coursera",
-    file: "/certificates/ibm-generative-ai-software-developers.pdf",
-  },
-  {
-    title: "Java Spring Boot Case Study",
-    issuer: "EDUCBA",
-    file: "/certificates/java-spring-boot-case-study.pdf",
-  },
-  {
     title: "Google Project Management",
     issuer: "Google · Coursera",
     url: "https://coursera.org/verify/professional-cert/KXL5L8AQ4PBS",
@@ -257,11 +247,6 @@ export const certifications: { title: string; issuer: string; file?: string; url
     title: "Web Development Internship",
     issuer: "Solnet",
     file: "/certificates/solnet-web-dev-internship.pdf",
-  },
-  {
-    title: "Cyber Job Simulation",
-    issuer: "Deloitte · Forage",
-    file: "/certificates/deloitte-cyber-job-simulation.pdf",
   },
   { title: "AI Tools Skill Up", issuer: "GeeksforGeeks", file: "/certificates/gfg-ai-tools.pdf" },
 ];
